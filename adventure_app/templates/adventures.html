@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventures</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class = "wrapper">
+        <header>
+            <nav class = "nav"></nav>
+            <h1>Upcoming Adventures</h1>
+            <a href = "">Post a New Adventure</a>
+        </header>
+        <section class = "main">
+            <sidebar class = "search">
+                <h5>Search</h5>
+                {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                    <li>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="" method="post">
+                {% csrf_token %}
+
+                    <p>All Regions:</p>
+                    <label for="south">South</label>
+                    <input type="radio" id="south" name="region" value="south">
+                    <label for="southwest">Southwest</label>
+                    <input type="radio" id="southwest" name="region" value="southwest">
+
+                    <p>All Distances:</p>
+                    <label for="short">Short</label>
+                    <input type="radio" id="short" name="distance" value="short">
+                    <label for="far">Far</label>
+                    <input type="radio" id="far" name="distance" value="far">
+
+                    <p>All Adventure Types:</p>
+                    <label for="mountain biking">Mountain Biking</label>
+                    <input type="radio" id="mountain biking" name="type" value="mountain biking">
+                    <label for="hiking">Hiking</label>
+                    <input type="radio" id="hiking" name="type" value="hiking">
+
+                    <p>All Posters:</p>
+                    <label for="poster">Poster's name</label>
+                    <input type="radio" id="poster" name="poster" value="poster">
+                </form>
+            </sidebar>
+
+            <div class = "adventures"></div>
+                <div class = "heading">
+                    <a href = "//{{.id}}">{{location}}</a>
+                    <p>Date/Time</p>
+                    <a>Join</a>
+                </div>
+                <div class = "detail">
+                    <p>type</p>
+                    <p>region</p>
+                    <p>distance</p>
+                    <p>skill level</p>
+                </div>
+                <div class = "equip">
+                    <p>Suggested Equipment</p>
+                    <ul>
+                        <li>bike</li>
+                    </ul>
+                </div>
+                <div class = "desciption">
+                    <p>alkjlljk</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
