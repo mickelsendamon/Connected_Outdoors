@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class = "wrapper">
+        <header>
+            <h3>Adventure</h3>
+            <nav class = "nav"></nav>
+            <h1>Location</h1>
+        </header>
+        <div class = "advDetailMain">
+            <div class = "left">
+                <p>Date</p>
+                <p>Meeting time</p>
+                <p>Region</p>
+                <p>Location</p>
+                <p>Distance</p>
+                <p>Skill Level</p>
+            </div>
+            <div class = "right">
+                <p>Host Email: sldj@hkjhkj</p>
+                <button>Cancel/Leave Adventure</button>
+                <p>Description:</p>
+                <textarea>dfjkdfhkkd</textarea>
+            </div>
+            <div class = "bottom">
+                <h3>Participants</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Nickname</th>
+                            <th>Last Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>James</td>
+                            <td>Jim</td>
+                            <td>Smith</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>
