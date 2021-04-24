@@ -40,7 +40,7 @@ class User(models.Model):
 
 class Activity(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    image = models.ImageField()pip
+    image = models.ImageField()
     objects = ActivityManager()
 
 
