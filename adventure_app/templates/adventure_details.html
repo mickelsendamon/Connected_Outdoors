@@ -1,22 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BOOTSTRAP (<head>) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- ICONS (<head>) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <title>Adventure Details</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-    <div class = "wrapper">
+        <!-- Jess NAVBAR CODE -->
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #f5eec2">
+            <div class="container">
+                <h2 class="navbar-brand">Connected Outdoors</h2>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/adventures">Upcoming Adventures</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/my_adventures">My Adventures</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <div class="wrapper">
         <header>
             <h3>Adventure</h3>
-            <nav class = "nav"></nav>
+            <nav class="nav"></nav>
             <h1>Location</h1>
         </header>
-        <div class = "advDetailMain">
-            <div class = "left">
+        <div class="advDetailMain">
+            <div class="left">
                 <p>Date</p>
                 <p>Meeting time</p>
                 <p>Region</p>
@@ -24,13 +56,13 @@
                 <p>Distance</p>
                 <p>Skill Level</p>
             </div>
-            <div class = "right">
+            <div class="right">
                 <p>Host Email: sldj@hkjhkj</p>
                 <button>Cancel/Leave Adventure</button>
                 <p>Description:</p>
                 <textarea>dfjkdfhkkd</textarea>
             </div>
-            <div class = "bottom">
+            <div class="bottom">
                 <h3>Participants</h3>
                 <table>
                     <thead>
@@ -50,6 +82,11 @@
                 </table>
             </div>
         </div>
-    </div>    
+    </div>
+    <!-- BOOTSTRAP BUNDLE -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
