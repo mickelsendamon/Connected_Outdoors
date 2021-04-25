@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,23 +9,25 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-    <div class = "wrapper">
+    <div class="wrapper">
         <h1>Login</h1>
         {% if messages %}
-            <ul class="messages">    
-                {% for message in messages %}    
-                    <li>{{ message }}</li>    
-                {% endfor %}
-            </ul>
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
         {% endif %}
-        <form action="/users/login" method="POST">
+        <form action="/login" method="POST">
             {% csrf_token %}
-            <label>Email: <input type = "text" name = "email"></label><br><br>
-            <label>Password: <input type = "password" name = "password"></label><br><br>
-            <input type = "submit"  value="Sign In" class = "submitButton">
+            <label>Email: <input type="text" name="email"></label><br><br>
+            <label>Password: <input type="password" name="password"></label><br><br>
+            <input type="submit" value="Sign In" class="submitButton">
         </form>
-        <a href"" class = "regLink">Need to Register?</a>
-    </div>    
+        <a href="/register" class="regLink">Need to Register?</a>
+    </div>
 </body>
+
 </html>

@@ -18,7 +18,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        <form action="/users/create" method="POST">
+        <form action="/registration" method="POST">
             {% csrf_token %}
             <label>First Name: <input type = "text" name = "first_name"></label><br><br>
             <label>Last Name: <input type="text" name = "last_name"></label><br><br>
