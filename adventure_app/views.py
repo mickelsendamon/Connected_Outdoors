@@ -25,13 +25,13 @@ def logout(request):
     return redirect('/')
 
 
-def register(request):
+def register_page(request):
     return render(request, "register.html")
 
 
 def registration(request):
     if request.method == "POST":
-        errors = User.objects.user_validator(request.POST)
+        errors = User.objects.basic_validation(request.POST)
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
@@ -53,6 +53,15 @@ def registration(request):
 
 
 def adventures_page(request):
+    if 'user_id' not in request.session:
+        return redirect('/')
+
+    context = {
+        'current_user': User.objects.get(id=request.session['user_id']),
+        'all_adventures': Adventure.objects.all().order_by('-adventure_start'),
+        'all_sg_equipment': SuggestedEquipment.objects.all(),
+        'all_activities': Activity.objects.all(),
+    }
     return render(request, "adventures.html")
 
 
