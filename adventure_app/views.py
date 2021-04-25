@@ -65,8 +65,13 @@ def adventures_page(request):
     return render(request, "adventures.html")
 
 
-def join_adventure(request):
-    return redirect('adventures')
+def join_adventure(request, adventure_id):
+    if request.method == 'POST':
+        if 'user_id' in request.session:
+            this_adventure = Adventure.objects.get(id=adventure_id)
+            this_adventure.participants.add(User.objects.get(id=request.session['user_id']))
+        return redirect('/')
+    return redirect('/adventures')
 
 
 def leave_adventure(request):
@@ -96,4 +101,21 @@ def new_adventure(request):
 
 
 def create_adventure(request):
-    return redirect('adventures')
+    if request.method == 'POST':
+        if 'user_id' in request.session:
+            location = request.POST['location']
+            region = request.POST['region']
+            distance = request.POST['distance']
+            skill_level = request.POST['skill_level']
+            adventure_start = request.POST['adventure_start']
+            duration = request.POST['duration']
+            meeting_location = request.POST['meeting_location']
+            description = request.POST['description']
+            activity = Activity.objects.get(id=request.POST['activity_id'])  # todo verify this lines up with the HTML
+            adventure = Adventure.objects.create(
+                location=location, region=region, distance=distance, skill_level=skill_level,
+                adventure_start=adventure_start, duration=duration, meeting_location=meeting_location,
+                description=description, activity=activity, organizer=User.objects.get(id=request.session['user_id'])
+            )
+            return redirect('/adventure_detail', adventure.id)
+    return redirect('/adventures')
