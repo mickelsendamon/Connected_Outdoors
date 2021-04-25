@@ -1,32 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adventures</title>
+    <!-- BOOTSTRAP (<head>) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- ICONS (<head>) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <title>Upcoming Adventures</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login_register.css' %}">
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <!-- FOR FLOATING FORM -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/floating-labels/">
 </head>
+
 <body>
-    <div class = "wrapper">
+    <!-- Jess NAVBAR CODE -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #f5eec2">
+        <div class="container">
+            <h2 class="navbar-brand">Connected Outdoors</h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/adventures">Upcoming Adventures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/my_adventures">My Adventures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wrapper">
         <header>
-            <nav class = "nav"></nav>
+            <nav class="nav"></nav>
             <h1>Upcoming Adventures</h1>
-            <a href = "">Post a New Adventure</a>
+            <a href="/adventures">Post a New Adventure</a>
         </header>
-        <section class = "main">
-            <sidebar class = "search">
+        <section class="main">
+            <sidebar class="search">
                 <h5>Search</h5>
                 {% if messages %}
-                <ul class="messages">    
-                    {% for message in messages %}    
-                    <li>{{ message }}</li>    
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
                 <form action="" method="post">
-                {% csrf_token %}
+                    {% csrf_token %}
 
                     <p>All Regions:</p>
                     <label for="south">South</label>
@@ -52,29 +89,34 @@
                 </form>
             </sidebar>
 
-            <div class = "adventures"></div>
-                <div class = "heading">
-                    <a href = "//{{.id}}">{{location}}</a>
-                    <p>Date/Time</p>
-                    <a>Join</a>
-                </div>
-                <div class = "detail">
-                    <p>type</p>
-                    <p>region</p>
-                    <p>distance</p>
-                    <p>skill level</p>
-                </div>
-                <div class = "equip">
-                    <p>Suggested Equipment</p>
-                    <ul>
-                        <li>bike</li>
-                    </ul>
-                </div>
-                <div class = "desciption">
-                    <p>alkjlljk</p>
-                </div>
+            <div class="adventures"></div>
+            <div class="heading">
+                <a href="//{{.id}}">{{location}}</a>
+                <p>Date/Time</p>
+                <a>Join</a>
             </div>
-        </section>
+            <div class="detail">
+                <p>type</p>
+                <p>region</p>
+                <p>distance</p>
+                <p>skill level</p>
+            </div>
+            <div class="equip">
+                <p>Suggested Equipment</p>
+                <ul>
+                    <li>bike</li>
+                </ul>
+            </div>
+            <div class="desciption">
+                <p>alkjlljk</p>
+            </div>
     </div>
+    </section>
+    </div>
+    <!-- BOOTSTRAP BUNDLE -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

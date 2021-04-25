@@ -1,15 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BOOTSTRAP (<head>) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- ICONS (<head>) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
     <title>Register</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login_register.css' %}">
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-    <div class = "wrapper">
+    <div id="register_container">
+        <div class="page-header">
+            <div class="text-center">
+                <h1 class="app_title">Connected Outdoors</h1>
+                <div id="register">
+                    <h3>Create a new account</h3>
+                    {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                        <li>{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <form action="/registration" method="POST" style="padding-bottom: 3%;">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label margin-top: 1%;>First Name <input class="register_input" type=text name='first_name'
+                                    style="margin-left:63px;"></label>
+                        </div>
+                        <div class="form-group row">
+                            <label>Last Name <input class="register_input" type=text name='last_name'
+                                    style="margin-left: 63px;"></label>
+                        </div>
+                        <div class="form-group row">
+                            <label>Email <input class="register_input" type=text name='email'
+                                    style="margin-left: 102px;"></label>
+                        </div>
+                        <div class="form-group row">
+                            <label>Password <input class="register_input" type=password name='password'
+                                    style="margin-left: 73px;"></label>
+                        </div>
+                        <div class="form-group row">
+                            <label>Re-enter Password <input class="register_input" type=password name='password_conf'
+                                    style="margin-left: 7px;"></label>
+                        </div>
+                        <button type="submit" value="Register">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class = "wrapper">
         <h1>Register</h1>
         {% if messages %}
             <ul class="messages">    
@@ -27,6 +80,7 @@
             <label>Password Confirmation: <input type="password" name = "password_conf"></label><br><br>
             <input type = "submit"  value="Register" class = "submitButton">
         </form>            
-    </div>    
+    </div>     -->
 </body>
+
 </html>
