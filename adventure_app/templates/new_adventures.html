@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Adventure</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        *{
+            /* outline:  red dotted 2px; */
+        }        
+        .wrapper{
+            width:   1200px;
+            padding: 10px;
+        }
+        .pageTitle{
+            text-align: center;
+        }
+        .new_leftside{
+            width:  47%;
+            display:  inline-block;
+            height:  600px;
+            vertical-align: top;
+            text-align:  left;
+        }
+        .new_rightside{
+            width:  47%;
+            height:  600px;
+            display:  inline-block;
+            vertical-align: top;
+        }
+        .labelNew{
+            margin-right: 10px;
+            width:  10%; 
+        }
+        .new_leftside input{
+            width:  200px; 
+        }
+        .descNew{
+            width:  300px;
+            height:  200px;
+            margin-left:  20%;
+        }
+        .equip{
+            width:  20px;
+        }
+        .subtitle_Rt_New{
+            margin-left:  20%;
+        }
+        .scrollbox{
+            width: 150px;
+            height: 150px; 
+            line-height: 3em; 
+            overflow:scroll; 
+            border: thin #000 solid;
+            padding: 5px;
+            margin-left:  20%;
+        }
+        .submit_button{
+            width: 200px;
+            margin: 30px 42%;
+        }
+    </style>
+</head>
+<body>
+    <div class = "wrapper">
+        <div>Navigation</div>
+        <h1  class = "pageTitle">Create a New Adventure</h1>
+
+        <div class = "new_leftside">
+            {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                <li>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="create_adventure" method="post">
+            {% csrf_token %}
+                <label class = "labelNew" >Activity</label>
+                <input type = "text" name = "location"><br><br>
+                <!-- <select name = "activity" class="dropdown-content">
+                    <option  disabled selected>Select an Activity</option>
+                    {% for activity in all_activities.all %}                    
+                    <option value="{{ activity.id }}">{{activity.name}}</option>
+                    {% endfor %}             
+                </select><br><br> -->
+                    
+                <label class = "labelNew">Location</label>
+                <input type = "text" name = "location"><br><br>
+
+                <label class = "labelNew">Region</label>
+                <select name = "region" class="dropdown-content">
+                    <option  disabled selected>Select a Region</option> 
+                    <option value="southeast">Southeast</option>
+                    <option value="southwest">Southwest</option>
+                    <option value="northeast">Northeast</option> 
+                    <option value="northwest">Northwest</option> 
+                </select><br><br>
+
+                <label class = "labelNew">Distance</label>
+                <input type = "text" name = "distance"><br><br>
+
+                <label class = "labelNew">Skill Level</label>
+                <select name = "skill_level" class="dropdown-content">
+                    <option  disabled selected>Select a skill level</option> 
+                    <option value="beginner">Beginner</option>                    
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                    <option value="master">Master</option>
+                </select><br><br>
+
+                <label class = "labelNew">Adventure Start</label>
+                <input type = "time" name = "start" >
+                <input type = "date" name = "start" ><br><br>
+
+                <label class = "labelNew">Duration:</label>
+                <input type = "text" name = "duration"><br><br>
+
+                <label class = "labelNew">Meeting Location</label>
+                <input type = "text" name = "location"><br><br>
+            </form>
+        </div>
+                
+
+        <div class = "new_rightside">
+            <p class = "subtitle_Rt_New">Description:</p>
+            <textarea class = "descNew"></textarea>
+            <p class = "subtitle_Rt_New">Suggested Equipment:</p>
+            <div class = "scrollbox">
+                <form action="/">
+                    {% csrf_token %} 
+                    {% for equipment in suggestedEquipment.all %}
+                    <input type="checkbox" id="equipment" name="equipment" value="{{equipment}}" class = "equip">
+                    <label for="equipment"> {{equipment}}</label><br>
+                </form>
+            </div>
+        </div>
+
+        <button type="submit" class = "submit_button">Submit</button>
+    </div>    
+</body>
+</html>

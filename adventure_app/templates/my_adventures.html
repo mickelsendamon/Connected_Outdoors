@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Adventures</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        *{
+            outline:  red 1px dotted;
+        }
+        .search{
+            width:  25%;
+            display:  inline-block;
+            vertical-align: top;
+        }
+        .myAdventures{
+            width:  60%;
+            display:  inline-block;
+            vertical-align: top;
+        }
+        .pageTitle{
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class = "wrapper">
+        <header>
+            <nav>Nav</nav>
+            <h1 class = "pageTitle">My Adventures</h1>
+            <a href = "/new_adventure.html">Post a New Adventure</a>
+        </header>
+        <section class = "main">
+            <sidebar class = "search">
+                <h5>Search</h5>
+                {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                    <li>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="" method="post">
+                {% csrf_token %}
+
+                    <p>All Regions:</p>
+                    <select name = "region" class="dropdown-content">
+                        <option  disabled selected>Select a Region</option> 
+                        <option value="south">South</option>
+                        <option value="southwest">Southwest</option>
+                        <option value="north">North</option> 
+                        <option value="northwest">Northwest</option> 
+                    </select>
+                    
+                    <p>All Distances:</p>
+                    <label for="short">Short</label>
+                    <input type="radio" id="short" name="distance" value="short">
+                    <label for="far">Far</label>
+                    <input type="radio" id="far" name="distance" value="far">
+
+                    <p>All Adventure Types:</p>
+                    <select name = "activity" class="dropdown-content">
+                        <option  disabled selected>Select an Activity</option>                    
+                        <option value="mountain_biking">Mountain Biking</option>               
+                        <option value="hiking">Hiking</option>                   
+                        <option value="rock_climbing">Rock climbing</option>
+                        <option value="trail_running">Trail Running</option>
+                    </select>
+
+                    <p>All Posters:</p>
+                    <!-- forloop -->
+                    <label for="poster">{{organized_adventures.first_name }} {{organized_adventures.last_name }}</label>
+                    <input type="radio" id="poster" name="poster" value="poster">
+                </form>
+            </sidebar>
+
+            <div class = "myAdventures">
+                <div class = "detail_side">
+                    <a>href = "/adventure_details/{{adventure.id}}">{{adventures.name }}</a>
+                    <p>{{this_adventure.region}}</p>
+                    <p>{{this_adventure.location}}</p>
+                    <p>{{this_adventure.distance}}</p>
+                    <p>{{this_adventure.skill_level}}</p>
+                </div>
+                <div class = "equip_side">
+                    <p>Date/Time</p>
+                    <p>Suggested Equipment</p>
+                    //forloop
+                    <ul>
+                        <li>{{suggested_equipment.name}}</li>
+                    </ul>
+                    <form action = "/cancel_adventure/<int:adv_id>" class ="removeBtn" method = "POST">                        
+                        {% csrf_token %}  
+                        <input type = "submit" class = "delBtn"  value="Leave ">  
+                </div>
+                    
+            </div>
+        </section>
+    </div>
+</body>
+</html>
