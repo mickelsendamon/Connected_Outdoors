@@ -1,0 +1,18 @@
+
+        *{
+            outline:  red 1px dotted;
+        }
+        .search{
+            width:  25%;
+            display:  inline-block;
+            vertical-align: top;
+        }
+        .myAdventures{
+            width:  60%;
+            display:  inline-block;
+            vertical-align: top;
+        }
+        .pageTitle{
+            text-align: center;
+        }
+

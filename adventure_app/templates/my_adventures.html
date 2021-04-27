@@ -7,38 +7,17 @@
     <title>My Adventures</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <style>
-        *{
-            outline:  red 1px dotted;
-        }
-        .search{
-            width:  25%;
-            display:  inline-block;
-            vertical-align: top;
-        }
-        .myAdventures{
-            width:  60%;
-            display:  inline-block;
-            vertical-align: top;
-        }
-        .pageTitle{
-            text-align: center;
-        }
-
-
-    </style>
+    
 </head>
 <body>
-    <div class = "wrapper">
-        <header>
-            <nav>Nav</nav>
-            <h1 class = "pageTitle">My Adventures</h1>
+    <div class = "wrapper">       
+            <h1 class = "title">My Adventures</h1>
             <a href = "/new_adventure.html">Post a New Adventure</a>
-        </header>
+        
         <section class = "main">
             <sidebar class = "search">
                 <h5>Search</h5>
-                {% if messages %}
+                <!-- {% if messages %}
                 <ul class="messages">    
                     {% for message in messages %}    
                     <li>{{ message }}</li>    
@@ -46,59 +25,71 @@
                 </ul>
                 {% endif %}
                 <form action="" method="post">
-                {% csrf_token %}
+                {% csrf_token %} -->
 
-                    <p>All Regions:</p>
-                    <select name = "region" class="dropdown-content">
-                        <option  disabled selected>Select a Region</option> 
-                        <option value="south">South</option>
-                        <option value="southwest">Southwest</option>
-                        <option value="north">North</option> 
-                        <option value="northwest">Northwest</option> 
-                    </select>
-                    
-                    <p>All Distances:</p>
-                    <label for="short">Short</label>
-                    <input type="radio" id="short" name="distance" value="short">
-                    <label for="far">Far</label>
-                    <input type="radio" id="far" name="distance" value="far">
+                <label class = "label">Region</label>
+                <select name = "region" class="dropdown-content">
+                    <option  disabled selected>Select a Region</option> 
+                    <option value="southeast">Southeast</option>
+                    <option value="southwest">Southwest</option>
+                    <option value="northeast">Northeast</option> 
+                    <option value="northwest">Northwest</option> 
+                </select><br><br> 
 
-                    <p>All Adventure Types:</p>
-                    <select name = "activity" class="dropdown-content">
-                        <option  disabled selected>Select an Activity</option>                    
-                        <option value="mountain_biking">Mountain Biking</option>               
-                        <option value="hiking">Hiking</option>                   
-                        <option value="rock_climbing">Rock climbing</option>
-                        <option value="trail_running">Trail Running</option>
-                    </select>
+                <label class = "label">All Distances:</label><br>
+                <select name = "distance" class="dropdown-content">
+                    <option  disabled selected>Select a Distance</option> 
 
-                    <p>All Posters:</p>
-                    <!-- forloop -->
-                    <label for="poster">{{organized_adventures.first_name }} {{organized_adventures.last_name }}</label>
-                    <input type="radio" id="poster" name="poster" value="poster">
-                </form>
+                    {% for adventure in all_adventures.all %}
+                    <option value="{{adventure.distance}}">{{adventure.distance}}</option>
+                    {% endfor %}
+                </select><br><br> 
+
+                
+            <label class = "label" >All Adventure Types:</label>
+                <select name = "activity_id" class="dropdown-content">
+                    <option  disabled selected>Select an Activity</option> 
+                    {% for activities in all_activities.all %}
+                    <option value = "{{activities.id}}">{{activities.name}}</option>
+                    {% endfor %}
+                        
+                </select><br><br>
+
+                <label>All Posters:</label>
+                <select name = "organizer" class="dropdown-content">
+                    <option  disabled selected>Select an Organizer</option> 
+                    <option value="{{user.organized_adventures.name}}">{{user.organized_adventures.name}}</option>
+                    {#% endfor %#}
+                </select><br><br> 
+            
             </sidebar>
 
-            <div class = "myAdventures">
-                <div class = "detail_side">
-                    <a>href = "/adventure_details/{{adventure.id}}">{{adventures.name }}</a>
-                    <p>{{this_adventure.region}}</p>
-                    <p>{{this_adventure.location}}</p>
-                    <p>{{this_adventure.distance}}</p>
-                    <p>{{this_adventure.skill_level}}</p>
+
+
+            <div class="myAdventures">
+                <div class="heading">
+                    icon
+                    {% for my_adventures in all_adventures.all%}
+                    <a href="//{{adventure.id}}">{{adventure.activity}}</a>
+                    <p>{{adventure.adventure_start}}</p>
                 </div>
-                <div class = "equip_side">
-                    <p>Date/Time</p>
+
+                <div class="detail">
+                    <p>{{adventure.location}}</p>
+                    <p>{{adventure.region}}</p>
+                    <p>{{adventure.distance}}</p>
+                    <p>{{adventure.skill_level}}</p>
+                </div>
+                <div class="equip">
                     <p>Suggested Equipment</p>
-                    //forloop
+                    {% for equipment in all_sg_equipment.all%}
                     <ul>
-                        <li>{{suggested_equipment.name}}</li>
+                        <li>{{adventure.suggested_equipment}}</li>
                     </ul>
-                    <form action = "/cancel_adventure/<int:adv_id>" class ="removeBtn" method = "POST">                        
-                        {% csrf_token %}  
-                        <input type = "submit" class = "delBtn"  value="Leave ">  
+                    {% endfor %}
                 </div>
-                    
+                <button href = "/leave_adventure">Leave</button>
+                {% endfor%}
             </div>
         </section>
     </div>

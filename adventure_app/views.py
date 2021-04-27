@@ -97,7 +97,10 @@ def cancel_adventure(request, adv_id):
 
 
 def new_adventure(request):
-    return render(request, "new_adventure.html")
+    context = {
+        'all_activities': Activity.objects.all()
+    }
+    return render(request, "new_adventure.html", context)
 
 
 def create_adventure(request):

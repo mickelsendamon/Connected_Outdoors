@@ -12,43 +12,42 @@
 <body>
     <div class = "wrapper">
         <div>Navigation</div>
-        <h1  class = "pageTitle">Create a New Adventure</h1>
-
-        <div class = "new_leftside">
-            {% if messages %}
-            <ul class="messages">    
-                {% for message in messages %}    
-                <li>{{ message }}</li>    
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <form action="/create_adventure" method="post" class = "form">
-            {% csrf_token %}
+        <h1  class = "pageTitle">Create a New Adventure</h1>       
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+            <li>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="/create_adventure" method="post" class = "form">
+        {% csrf_token %}
+            <div class = "new_leftside">
                 <label class = "label" >Activity</label>
-                <select name = "activity" class="dropdown-content">
-                    <option  disabled selected>Select an Activity</option>
-                    <option value="mountain_biking">Mountain Biking</option>
-                    <option value="rock_climbing">Rock Climbing</option>
-                    <option value="trail_running">Trail Running</option> 
-                    <option value="hiking">Hiking</option>              
-                </select><br><br>
+
+                    <select name = "activity_id" class="dropdown-content">
+                        <option disabled selected>Select an Activity</option> 
+                        {% for activities in all_activities.all %}
+                        <option value = "{{activities.id}}">{{activities.name}}</option>
+                        {% endfor %}              
+                    </select><br><br>
                     
                 <label class = "label">Location</label>
                 <input type = "text" name = "location"><br><br>
 
-                <label class = "label">Region</label>
+                <label class = "label">Region</label> 
                 <select name = "region" class="dropdown-content">
                     <option  disabled selected>Select a Region</option> 
                     <option value="southeast">Southeast</option>
                     <option value="southwest">Southwest</option>
                     <option value="northeast">Northeast</option> 
                     <option value="northwest">Northwest</option> 
-                </select><br><br>
+                </select><br><br> 
 
                 <label class = "label">Distance</label>
                 <input type = "text" name = "distance"><br><br>
 
-                <label class = "label">Skill Level</label>
+                <label class = "label">Skill Level</label>                    
                 <select name = "skill_level" class="dropdown-content">
                     <option  disabled selected>Select a skill level</option> 
                     <option value="beginner">Beginner</option>                    
@@ -58,25 +57,22 @@
                 </select><br><br>
 
                 <label class = "label">Adventure Start</label>
-                <input type = "time" name = "start" class = "time">
-                <input type = "date" name = "start" class = "date"><br><br>
+                <input type = "time" name = "adventure_start" class = "time">
+                <input type = "date" name = "adventure_start" class = "date"><br><br>
 
                 <label class = "label">Duration:</label>
                 <input type = "text" name = "duration"><br><br>
 
                 <label class = "label">Meeting Location</label>
-                <input type = "text" name = "location"><br><br>
-            </form>
-        </div>
+                <input type = "text" name = "meeting_location"><br><br>
+            </div>
                 
 
-        <div class = "new_rightside">
-            <p class = "subtitle_Rt_New">Description:</p>
-            <textarea class = "descNew"></textarea>
-            <p class = "subtitle_Rt_New">Suggested Equipment:</p>
-            <div class = "scrollbox">
-                <form action="/create_adventure">
-                    {% csrf_token %} 
+            <div class = "new_rightside">
+                <p class = "subtitle_Rt_New">Description:</p>
+                <textarea name = "description" class = "descNew"></textarea>
+                <p class = "subtitle_Rt_New">Suggested Equipment:</p>
+                <div class = "scrollbox">
                     <input type="checkbox" id="bike" name="equipment" value="bike">
                     <label for="bike">bike</label><br>
 
@@ -112,11 +108,10 @@
 
                     <input type="checkbox" id="rain_gear" name="equipment" value="rain_gear">
                     <label for="rain_gear">rain gear</label><br>
-                </form>
+                </div>
             </div>
-        </div>
-
-        <button type="submit" class = "submit_button">Submit</button>
+            <button type="submit" class = "submit_button">Submit</button>
+        </form>
     </div>    
 </body>
 </html>
