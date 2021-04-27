@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-     /* outline:  red dotted 2px; */
+    /* outline:  red dotted 2px; */
 }
 
         
@@ -11,13 +11,24 @@
 }
 .pageTitle{
     text-align: center;
+    margin:  30px 0 100px 0;
 }
 .new_leftside{
     width:  47%;
     display:  inline-block;
     height:  600px;
     vertical-align: top;
-    text-align:  left;
+    text-align:  left;    
+}
+.dropdown-content{
+    width:  175px;
+    font-size:  18px;
+}
+.label{
+    margin: 10px;
+    width:  150px; 
+    height:  25px;
+    display:  inline-block;
 }
 .new_rightside{
     width:  47%;
@@ -25,17 +36,21 @@
     display:  inline-block;
     vertical-align: top;
 }
-.labelNew{
-    margin-right: 10px;
-    width:  10%; 
+.date{
+    width:  50px;
+}
+.time{
+    width:  50px;
 }
 .new_leftside input{
-    width:  200px; 
+    width:  175px; 
+    height:  25px;
+    font-size: 18px;
 }
 .descNew{
-    width:  300px;
+    width:  310px;
     height:  200px;
-    margin-left:  20%;
+    margin:  10px 20% 75px;
 }
 .equip{
     width:  20px;
@@ -44,16 +59,23 @@
     margin-left:  20%;
 }
 .scrollbox{
-    width: 150px;
+    width: 300px;
     height: 150px; 
-    line-height: 3em; 
+    line-height: 2em; 
     overflow:scroll; 
     border: thin #000 solid;
     padding: 5px;
-    margin-left:  20%;
+    margin: 10px 20%;
+}
+.scrollbox label{
+    margin:  0 15px;
+}
+.scrollbox input{
+    margin:  0 5px;
 }
 .submit_button{
-    width: 200px;
+    width: 100px;
+    height:  30px;
     margin: 30px 42%;
 }
 

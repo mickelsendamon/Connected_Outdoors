@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Adventure</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/newAdv.css' %}">
+    
+</head>
+<body>
+    <div class = "wrapper">
+        <div>Navigation</div>
+        <h1  class = "pageTitle">Create a New Adventure</h1>
+
+        <div class = "new_leftside">
+            {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                <li>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="/create_adventure" method="post" class = "form">
+            {% csrf_token %}
+                <label class = "label" >Activity</label>
+                <select name = "activity" class="dropdown-content">
+                    <option  disabled selected>Select an Activity</option>
+                    <option value="mountain_biking">Mountain Biking</option>
+                    <option value="rock_climbing">Rock Climbing</option>
+                    <option value="trail_running">Trail Running</option> 
+                    <option value="hiking">Hiking</option>              
+                </select><br><br>
+                    
+                <label class = "label">Location</label>
+                <input type = "text" name = "location"><br><br>
+
+                <label class = "label">Region</label>
+                <select name = "region" class="dropdown-content">
+                    <option  disabled selected>Select a Region</option> 
+                    <option value="southeast">Southeast</option>
+                    <option value="southwest">Southwest</option>
+                    <option value="northeast">Northeast</option> 
+                    <option value="northwest">Northwest</option> 
+                </select><br><br>
+
+                <label class = "label">Distance</label>
+                <input type = "text" name = "distance"><br><br>
+
+                <label class = "label">Skill Level</label>
+                <select name = "skill_level" class="dropdown-content">
+                    <option  disabled selected>Select a skill level</option> 
+                    <option value="beginner">Beginner</option>                    
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                    <option value="master">Master</option>
+                </select><br><br>
+
+                <label class = "label">Adventure Start</label>
+                <input type = "time" name = "start" class = "time">
+                <input type = "date" name = "start" class = "date"><br><br>
+
+                <label class = "label">Duration:</label>
+                <input type = "text" name = "duration"><br><br>
+
+                <label class = "label">Meeting Location</label>
+                <input type = "text" name = "location"><br><br>
+            </form>
+        </div>
+                
+
+        <div class = "new_rightside">
+            <p class = "subtitle_Rt_New">Description:</p>
+            <textarea class = "descNew"></textarea>
+            <p class = "subtitle_Rt_New">Suggested Equipment:</p>
+            <div class = "scrollbox">
+                <form action="/create_adventure">
+                    {% csrf_token %} 
+                    <input type="checkbox" id="bike" name="equipment" value="bike">
+                    <label for="bike">bike</label><br>
+
+                    <input type="checkbox" id="sunscreen" name="equipment" value="sunscreen">
+                    <label for="sunscreen">sunscreen</label><br>
+
+                    <input type="checkbox" id="snacks" name="equipment" value="snacks">
+                    <label for="snacks">snacks</label><br>
+
+                    <input type="checkbox" id="water" name="equipment" value="water">
+                    <label for="water">water</label><br>
+
+                    <input type="checkbox" id="climbing_gear" name="equipment" value="climbing_gear">
+                    <label for="climbing_gear">climbing gear</label><br>
+
+                    <input type="checkbox" id="repair_kit" name="equipment" value="repair_kit">
+                    <label for="repair_kit">repair kit</label><br>
+
+                    <input type="checkbox" id="first_aid" name="equipment" value="first_aid">
+                    <label for="first_aid">first aid</label><br>
+
+                    <input type="checkbox" id="sunglasses" name="equipment" value="sunglasses">
+                    <label for="sunglasses">sunglasses</label><br>
+
+                    <input type="checkbox" id="hat" name="equipment" value="hat">
+                    <label for="hat">hat</label><br>
+
+                    <input type="checkbox" id="warm_clothing" name="equipment" value="warm_clothing">
+                    <label for="warm_clothing">warm clothing</label><br>
+
+                    <input type="checkbox" id="emergency_contact_list" name="equipment" value="emergency_contact_list">
+                    <label for="emergency_contact_list">emergency contact list</label><br>
+
+                    <input type="checkbox" id="rain_gear" name="equipment" value="rain_gear">
+                    <label for="rain_gear">rain gear</label><br>
+                </form>
+            </div>
+        </div>
+
+        <button type="submit" class = "submit_button">Submit</button>
+    </div>    
+</body>
+</html>
