@@ -8,25 +8,19 @@
     padding-bottom: 0;
 }
 
-.wrapper{
-    /* background-image: radial-gradient(circle, #f6c453, #a9c25d, #73a24e); */
-    /* background-image: linear-gradient(#73a24e, #a9c25d, #f6c453); */
-    /* background-image: linear-gradient(#73a24e,#f6c453); */
-    background-color: white;
-}
 
 .app_title{
     font-family: 'Zen Dots';
     color: #416a59;
     font-size: 4em;
     text-align: center;
-    margin-bottom: 6%;
     padding-top: 7%;
-
 }
-
+h3{
+    margin-bottom: 2%;
+}
 #login_container{
-    max-width: 60%; 
+    max-width: 63%; 
     margin-top: 6%;
     background-color:  #f5eec2;
     margin-left: 20%;
@@ -37,34 +31,73 @@
 .login_input{
     width: 25em;
     padding-top: 1%;
-    text-align: left;
+    margin-left: 12px;
 }
 
 
 button{
     border-radius: 0.5em; 
     box-shadow: 2px 3px black;
-    padding: 0.75%;
+    padding: 0.6% 2%;
     text-align: center;
     background-color: #f6c453;
     margin-top: 1%;
     margin-bottom: 2%;
 }
 
-/* .nav-link active{
-    color: #f6c453;
-} */
+#password{
+    margin-left: 16px;
+}
 
-
+#email{
+    padding-left: 7.6%;
+}
 .register_input{
     margin-bottom: 1%;
 }
 
 #register_container{
-    max-width: 60%; 
+    max-width: 63%; 
     margin-top: 6%;
     background-color:  #f5eec2;
     margin-left: 20%;
     width: 155em;
     height: 30em;
+}
+
+.main_wrapper{
+    position: relative;
+    width:auto; 
+    height: auto;
+    padding-top: 3%; 
+    padding-bottom: 6%; 
+    margin-top: 2%;
+}
+.main_wrapper::before{
+    content: '';
+    background-image: url("/static/img/bg_1_proj.jpg");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.8;
+    z-index: -1;
+} 
+.login_form{
+    padding-bottom: 3%;
+    background-color: purple;
+}
+
+#create_account{
+    padding-bottom: 1%;
+}
+
+#register_header{
+    padding-bottom: 1%;
+}
+
+#sign_in{
+    margin-top: 2%;
 }

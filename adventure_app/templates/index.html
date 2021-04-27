@@ -20,28 +20,32 @@
 </head>
 
 <body>
-    <div id="login_container">
-        <div class="page-header">
-            <div class="text-center">
-                <h1 class="app_title">Connected Outdoors</h1>
-                {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li>{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                <form action="/login" method="POST">
-                    {% csrf_token %}
-                    <div class="mb-4">
-                        <label>Email <input class="login_input" type="text" name="email"></label>
-                    </div>
-                    <div class="mb-4">
-                        <label>Password <input class="login_input" type="password" name="password" placeholder="Must be at least 8 characters long"></label>
-                    </div>
-                    <button type="submit" value="Sign In">Sign In</button>
-                </form>
-                <a id="register" href="/register">New user? Register here!</a>
+    <div class="main_wrapper">
+        <div id="login_container">
+            <div class="page-header">
+                <div class="text-center">
+                    <h1 class="app_title">Connected Outdoors</h1>
+                    <h3 id="sign_in">Sign In</h3>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <form action="/login" method="POST">
+                        {% csrf_token %}
+                        <div class="mb-4 form-group row">
+                            <label id="email">Email <input class="login_input" type="text" name="email"></label>
+                        </div>
+                        <div class="mb-4 form-group row">
+                            <label id="password">Password <input class="login_input" type="password" name="password"
+                                    placeholder=" Must be at least 8 characters long"></label>
+                        </div>
+                        <button type="submit" value="Sign In">Sign In</button>
+                    </form>
+                    <a id="register" href="/register">New user? Register here!</a>
+                </div>
             </div>
         </div>
     </div>
