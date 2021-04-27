@@ -13,11 +13,11 @@
     <title>Upcoming Adventures</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/login_register.css' %}">
+    <link rel="stylesheet" href="{% static 'css/upcoming_adventures.css' %}">
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
-    <!-- FOR FLOATING FORM -->
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/floating-labels/">
+
 </head>
 
 <body>
@@ -47,11 +47,16 @@
     </nav>
 
     <div class="wrapper">
-        <header>
-            <nav class="nav"></nav>
-            <h1>Upcoming Adventures</h1>
-            <a href="/adventures">Post a New Adventure</a>
-        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h1 id="upcoming_adventures">Upcoming Adventures</h1>
+                </div>
+                <div class="col-sm-4">
+                    <a class="post_adventure" href="/adventures">Post a New Adventure</a>
+                </div>
+            </div>
+        </div>
         <section class="main">
             <sidebar class="search">
                 <h5>Search</h5>
@@ -88,7 +93,6 @@
                     <input type="radio" id="poster" name="poster" value="poster">
                 </form>
             </sidebar>
-
             <div class="adventures"></div>
             <div class="heading">
                 <a href="//{{.id}}">{{location}}</a>

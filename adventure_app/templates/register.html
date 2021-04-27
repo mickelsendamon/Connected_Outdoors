@@ -21,43 +21,45 @@
 </head>
 
 <body>
-    <div id="register_container">
-        <div class="page-header">
-            <div class="text-center">
-                <h1 class="app_title">Connected Outdoors</h1>
-                <div id="register">
-                    <h3>Create a new account</h3>
-                    {% if messages %}
-                    <ul>
-                        {% for message in messages %}
-                        <li>{{message}}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <form action="/registration" method="POST" style="padding-bottom: 3%;">
-                        {% csrf_token %}
-                        <div class="form-group row">
-                            <label margin-top: 1%;>First Name <input class="register_input" type=text name='first_name'
-                                    style="margin-left:63px;"></label>
-                        </div>
-                        <div class="form-group row">
-                            <label>Last Name <input class="register_input" type=text name='last_name'
-                                    style="margin-left: 63px;"></label>
-                        </div>
-                        <div class="form-group row">
-                            <label>Email <input class="register_input" type=text name='email'
-                                    style="margin-left: 102px;"></label>
-                        </div>
-                        <div class="form-group row">
-                            <label>Password <input class="register_input" type=password name='password'
-                                    style="margin-left: 73px;"></label>
-                        </div>
-                        <div class="form-group row">
-                            <label>Re-enter Password <input class="register_input" type=password name='password_conf'
-                                    style="margin-left: 7px;"></label>
-                        </div>
-                        <button type="submit" value="Register">Register</button>
-                    </form>
+    <div class="main_wrapper">
+        <div id="register_container">
+            <div class="page-header">
+                <div class="text-center">
+                    <h1 class="app_title" id="register_header">Connected Outdoors</h1>
+                    <div id="register">
+                        <h4 id="create_account">Create a new account</h4>
+                        {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <li>{{message}}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <form action="/registration" method="POST" class="register_form">
+                            {% csrf_token %}
+                            <div class="form-group row">
+                                <label margin-top: 1%;>First Name <input class="register_input" type=text
+                                        name='first_name' style="margin-left:63px;"></label>
+                            </div>
+                            <div class="form-group row">
+                                <label>Last Name <input class="register_input" type=text name='last_name'
+                                        style="margin-left: 63px;"></label>
+                            </div>
+                            <div class="form-group row">
+                                <label>Email <input class="register_input" type=text name='email'
+                                        style="margin-left: 102px;"></label>
+                            </div>
+                            <div class="form-group row">
+                                <label>Password <input class="register_input" type=password name='password'
+                                        style="margin-left: 73px;"></label>
+                            </div>
+                            <div class="form-group row">
+                                <label>Re-enter Password <input class="register_input" type=password
+                                        name='password_conf' style="margin-left: 7px;"></label>
+                            </div>
+                            <button type="submit" value="Register">Register</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
