@@ -77,7 +77,7 @@
                 {% endfor %}
             </ul>
             {% endif %}
-            <form action="create_adventure" method="post">
+            <form action="/create_adventure" method="post">
             {% csrf_token %}
                 <label class = "labelNew" >Activity</label>
                 <input type = "text" name = "location"><br><br>

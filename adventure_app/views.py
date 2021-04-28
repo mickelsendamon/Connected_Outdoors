@@ -74,8 +74,13 @@ def join_adventure(request, adventure_id):
     return redirect('/adventures')
 
 
-def leave_adventure(request):
-    return redirect('adventures')
+def leave_adventure(request, adv_id):
+    if request.method == 'POST':
+        if 'user_id' in request.session:
+            user = User.objects.get(id=request.session['user_id'])
+            this_adventure = Adventure.objects.get(id=adv_id)
+            this_adventure.participants.remove(user)
+    return redirect('/adventures')
 
 
 def my_adventures(request):
@@ -89,7 +94,13 @@ def my_adventures(request):
 
 
 def adventure_detail(request, adv_id):
-    return render(request, "adventure_details.html")
+    if request.method == 'POST':
+        if 'user_id' in request.session:
+            context = {
+                'current_user': User.objects.get(id=request.session['user_id']),
+                'current_adventure': Adventure.objects.get(id=adv_id),
+            }
+    return render(request, "adventure_details.html", context)
 
 
 def cancel_adventure(request, adv_id):
@@ -97,9 +108,13 @@ def cancel_adventure(request, adv_id):
 
 
 def new_adventure(request):
-    context = {
-        'all_activities': Activity.objects.all()
-    }
+    if request.method == 'POST':
+        if 'user_id' in request.session:
+            context = {
+                'all_activities': Activity.objects.all(),
+                'all_equipments': SuggestedEquipment.objects.all(),
+
+            }
     return render(request, "new_adventure.html", context)
 
 

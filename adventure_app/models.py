@@ -29,21 +29,34 @@ class UserManager(models.Manager):
 class ActivityManager(models.Manager):
     def basic_validation(self, post_data):
         errors = {}
-        # todo validate post_data
+        if len(post_data['name']) < 1:
+            errors["name"] = "The name field can't be empty!"
         return errors
 
 
 class SuggestedEquipmentManager(models.Manager):
     def basic_validation(self, post_data):
         errors = {}
-        # todo validate post_data
+        if len(post_data['name']) < 1:
+            errors["name"] = "The name field can't be empty!"
+        if len(post_data['description']) < 10:
+            errors["description"] = "The description has to be at least 10 characters long!"
         return errors
 
 
 class AdventureManager(models.Manager):
     def basic_validation(self, post_data):
         errors = {}
-        # todo validate post_data
+        if len(post_data['location']) < 1:
+            errors["location"] = "The location field can't be empty!"
+        if len(post_data['distance']) < 1:
+            errors["distance"] = "The distance field can't be empty!"
+        if len(post_data['duration']) < 1:
+            errors["duration"] = "The duration field can't be empty!"
+        if len(post_data['meeting_location']) < 1:
+            errors["meeting_location"] = "The meeting location field can't be empty!"
+        if len(post_data['description']) < 10:
+            errors["description"] = "The description has to be at least 10 characters long!"
         return errors
 
 
