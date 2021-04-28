@@ -84,6 +84,7 @@ def leave_adventure(request, adv_id):  # todo done
 
 def my_adventures(request):  # todo done
     #  todo discuss do we want organizer to be added to participants list?
+
     if 'user_id' not in request.session:
         return redirect('/')
     user = User.objects.get(id=request.session['user_id'])
