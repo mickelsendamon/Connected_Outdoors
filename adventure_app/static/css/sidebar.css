@@ -1,0 +1,54 @@
+/* Sidebar */
+#sidebar_wrapper{
+    z-index: 1;
+    position: absolute;
+    width: 0;
+    height: 100%;
+    overflow-y: hidden;
+    background: #a9c25d;
+    border: 1px solid lightgrey;
+    /* opacity: 0.9; */
+}
+
+/* Main page content */
+#page_content_wrapper{
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+    border: 2px solid lightskyblue;
+}
+
+/* Change the width of the sidebar to display it */
+
+#wrapper.menuDisplayed #sidebar_wrapper{
+    width: 250px;
+}
+
+#wrapper.menuDisplayed #page_content_wrapper{
+    padding-left: 250px;
+}
+
+/* Sidebar Styling */
+.sidebar_nav{
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar_nav li{
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar_nav li a{
+    display: block;
+    text-decoration: none;
+    color: #ddd;
+}
+
+.sidebar_nav li a:hover{
+    background: #16A085;
+}
+
+.container-fluid .upcoming_adventures_listed{
+    border: 2px solid black;
+}
