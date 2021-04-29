@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Adventures</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/my_adventures.css' %}">
     
 </head>
 <body>
     <div class = "wrapper">       
-            <h1 class = "title">My Adventures</h1>
-            <a href = "/new_adventure">Post a New Adventure</a>
-        
+            <h1 class = "title">Adventures for {{current_user.first_name}} {{current_user.last_name}}</h1> 
+            <a href = "/new_adventure" class = "link">Post a New Adventure</a>
+
         <section class = "main">
             <sidebar class = "search">
                 <h5>Search</h5>
-                <!-- {% if messages %}
+                {% if messages %}
                 <ul class="messages">    
                     {% for message in messages %}    
                     <li>{{ message }}</li>    
@@ -25,72 +25,71 @@
                 </ul>
                 {% endif %}
                 <form action="" method="post">
-                {% csrf_token %} -->
+                {% csrf_token %}
 
-                <label class = "label">Region</label>
-                <select name = "region" class="dropdown-content">
-                    <option  disabled selected>Select a Region</option> 
-                    <option value="southeast">Southeast</option>
-                    <option value="southwest">Southwest</option>
-                    <option value="northeast">Northeast</option> 
-                    <option value="northwest">Northwest</option> 
-                </select><br><br> 
+                    <label class = "label">Region</label>
+                    <select name = "region" class="dropdown-content">
+                        <option  disabled selected>Select a Region</option> 
+                        <option value="southeast">Southeast</option>
+                        <option value="southwest">Southwest</option>
+                        <option value="northeast">Northeast</option> 
+                        <option value="northwest">Northwest</option> 
+                    </select><br><br> 
 
-                <label class = "label">All Distances:</label><br>
-                <select name = "distance" class="dropdown-content">
-                    <option  disabled selected>Select a Distance</option> 
+                    <label class = "label">All Distances:</label><br>
+                    <select name = "distance" class="dropdown-content">
+                        <option  disabled selected>Select a Distance</option> 
+                        {% for adventure in all_adventures.all %}
+                        <option value="{{adventure.distance}}">{{Adventure.distance}}</option>
+                        {% endfor %}
+                    </select><br><br> 
 
-                    {% for adventure in all_adventures.all %}
-                    <option value="{{adventure.distance}}">{{adventure.distance}}</option>
-                    {% endfor %}
-                </select><br><br> 
+                    
+                    <label class = "label" >All Adventure Types:</label>
+                    <select name = "activity_id" class="dropdown-content">
+                        <option  disabled selected>Select an Activity</option> 
+                        {% for activities in all_activities.all %}
+                        <option value = "{{activities.id}}">{{activities.name}}</option>
+                        {% endfor %}
+                            
+                    </select><br><br>
 
-                
-            <label class = "label" >All Adventure Types:</label>
-                <select name = "activity_id" class="dropdown-content">
-                    <option  disabled selected>Select an Activity</option> 
-                    {% for activities in all_activities.all %}
-                    <option value = "{{activities.id}}">{{activities.name}}</option>
-                    {% endfor %}
-                        
-                </select><br><br>
-
-                <label>All Posters:</label>
-                <select name = "organizer" class="dropdown-content">
-                    <option  disabled selected>Select an Organizer</option> 
-                    <option value="{{user.organized_adventures.name}}">{{user.organized_adventures.name}}</option>
-                    {#% endfor %#}
-                </select><br><br> 
-            
+                    <label>All Posters:</label>
+                    <select name = "organizer" class="dropdown-content">
+                        <option  disabled selected>Select an Organizer</option> 
+                        {% for organizer in user.organized_adventure.all  %}
+                        <option value="{{user.organized_adventures.first_name}}">{{user.organized_adventures.first_name}}{{user.organized_adventures.last_name}}</option>
+                        {% endfor %}
+                    </select><br><br> 
+                </form>           
             </sidebar>
 
-
-
-            <div class="myAdventures">
+            
+                
+            {% for adventure in my_adventures %}
+            <div class = "myAdventures">
                 <div class="heading">
-                    icon
-                    {% for my_adventures in all_adventures.all%}
-                    <a href="//{{adventure.id}}">{{adventure.activity}}</a>
-                    <p>{{adventure.adventure_start}}</p>
-                </div>
+                    <p>placeholder</p>
+                    <a href="/adventure_details/{{adv_id}}">{{adventure.activity.name}}</a>
+                    <p>{{Adventure.adventure_start}}</p>
+                </div> 
 
                 <div class="detail">
-                    <p>{{adventure.location}}</p>
+                    <p>{{adventures.location}}</p>
                     <p>{{adventure.region}}</p>
                     <p>{{adventure.distance}}</p>
                     <p>{{adventure.skill_level}}</p>
                 </div>
                 <div class="equip">
-                    <p>Suggested Equipment</p>
-                    {% for equipment in all_sg_equipment.all%}
+                    <p>Suggested Equipment</p>               
                     <ul>
-                        <li>{{adventure.suggested_equipment}}</li>
-                    </ul>
-                    {% endfor %}
-                </div>
-                <button href = "/leave_adventure">Leave</button>
-                {% endfor%}
+                        <li>{{adventure.suggested_equipment.name}}</li>
+                    </ul>                    
+                </div>                
+                <button href = "/leave_adventure/{{adventure.id}}" class = "button">Leave</button>
             </div>
+            {% endfor %}
+
         </section>
     </div>
 </body>

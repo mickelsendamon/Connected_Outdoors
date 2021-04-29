@@ -1,0 +1,52 @@
+       
+.wrapper{
+    width:   1200px;
+    padding: 10px;
+}
+.pageTitle{
+    text-align: center;
+}
+.new_leftside{
+    width:  47%;
+    display:  inline-block;
+    height:  600px;
+    vertical-align: top;
+    text-align:  left;
+}
+.new_rightside{
+    width:  47%;
+    height:  600px;
+    display:  inline-block;
+    vertical-align: top;
+}
+.label{
+    margin-right: 10px;
+    width:  10%; 
+}
+.new_leftside input{
+    width:  200px; 
+}
+.descNew{
+    width:  300px;
+    height:  200px;
+    margin-left:  20%;
+}
+.equip{
+    width:  20px;
+}
+.subtitle_Rt_New{
+    margin-left:  20%;
+}
+.scrollbox{
+    width: 150px;
+    height: 150px; 
+    line-height: 3em; 
+    overflow:scroll; 
+    border: thin #000 solid;
+    padding: 5px;
+    margin-left:  20%;
+}
+.submit_button{
+    width: 200px;
+    margin: 30px 42%;
+}

@@ -1,18 +1,32 @@
 
-        *{
-            outline:  red 1px dotted;
-        }
-        .search{
-            width:  25%;
-            display:  inline-block;
-            vertical-align: top;
-        }
-        .myAdventures{
-            width:  60%;
-            display:  inline-block;
-            vertical-align: top;
-        }
-        .pageTitle{
-            text-align: center;
-        }
+        
+
+ *{
+    outline:  red 1px dotted;
+}
+.search{
+    width:  25%;
+    display:  inline-block;
+    vertical-align: top;
+    border:  black 2px solid;
+    height:  100%;
+}
+.myAdventures{
+    width:  60%;
+    display:  inline-block;
+    vertical-align: top;
+    border:  black 2px solid;
+    min-height:  500px;    
+}
+.title{
+    text-align: center;
+}
+.link{
+    margin-left:  70%;
+}
+.button{
+    width:  100px;
+    height:  30px;
+    margin:  0 auto;
+}
 

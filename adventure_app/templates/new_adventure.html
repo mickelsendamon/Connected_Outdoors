@@ -24,11 +24,10 @@
         {% csrf_token %}
             <div class = "new_leftside">
                 <label class = "label" >Activity</label>
-
                     <select name = "activity_id" class="dropdown-content">
                         <option disabled selected>Select an Activity</option> 
                         {% for activities in all_activities.all %}
-                        <option value = "{{activities.id}}">{{activities.name}}</option>
+                        <option value = {{activities.id}}>{{activities.name}}</option>
                         {% endfor %}              
                     </select><br><br>
                     
@@ -57,9 +56,8 @@
                 </select><br><br>
 
                 <label class = "label">Adventure Start</label>
-                <input type = "time" name = "adventure_start" class = "time">
-                <input type = "date" name = "adventure_start" class = "date"><br><br>
-
+                <input type = "datetime" name = "adventure_start" id = "adventure_start" class = "time"><br>
+                
                 <label class = "label">Duration:</label>
                 <input type = "text" name = "duration"><br><br>
 
@@ -72,42 +70,13 @@
                 <p class = "subtitle_Rt_New">Description:</p>
                 <textarea name = "description" class = "descNew"></textarea>
                 <p class = "subtitle_Rt_New">Suggested Equipment:</p>
-                <div class = "scrollbox">
-                    <input type="checkbox" id="bike" name="equipment" value="bike">
-                    <label for="bike">bike</label><br>
-
-                    <input type="checkbox" id="sunscreen" name="equipment" value="sunscreen">
-                    <label for="sunscreen">sunscreen</label><br>
-
-                    <input type="checkbox" id="snacks" name="equipment" value="snacks">
-                    <label for="snacks">snacks</label><br>
-
-                    <input type="checkbox" id="water" name="equipment" value="water">
-                    <label for="water">water</label><br>
-
-                    <input type="checkbox" id="climbing_gear" name="equipment" value="climbing_gear">
-                    <label for="climbing_gear">climbing gear</label><br>
-
-                    <input type="checkbox" id="repair_kit" name="equipment" value="repair_kit">
-                    <label for="repair_kit">repair kit</label><br>
-
-                    <input type="checkbox" id="first_aid" name="equipment" value="first_aid">
-                    <label for="first_aid">first aid</label><br>
-
-                    <input type="checkbox" id="sunglasses" name="equipment" value="sunglasses">
-                    <label for="sunglasses">sunglasses</label><br>
-
-                    <input type="checkbox" id="hat" name="equipment" value="hat">
-                    <label for="hat">hat</label><br>
-
-                    <input type="checkbox" id="warm_clothing" name="equipment" value="warm_clothing">
-                    <label for="warm_clothing">warm clothing</label><br>
-
-                    <input type="checkbox" id="emergency_contact_list" name="equipment" value="emergency_contact_list">
-                    <label for="emergency_contact_list">emergency contact list</label><br>
-
-                    <input type="checkbox" id="rain_gear" name="equipment" value="rain_gear">
-                    <label for="rain_gear">rain gear</label><br>
+                <div class = "scrollbox"> 
+                        {% for equipment in all_sg_equipment.all %}                      
+                        <input type="checkbox" id=" {{SuggestedEquipment.name}} name={{SuggestedEquipment_id}} value={{SuggestedEquipment.id}}>
+                        <label for="{{SuggestedEquipment.name}}">{{equipment.name}}</label><br> 
+                        {% endfor %}              
+                    </select><br><br>
+                    
                 </div>
             </div>
             <button type="submit" class = "submit_button">Submit</button>
