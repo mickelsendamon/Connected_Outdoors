@@ -5,19 +5,33 @@
     width: 0;
     height: 100%;
     overflow-y: hidden;
-    background: #a9c25d;
+    background: #73a24e;
     border: 1px solid lightgrey;
-    /* opacity: 0.9; */
+    opacity: 0.9;
 }
 
 /* Main page content */
 #page_content_wrapper{
     width: 100%;
-    position: absolute;
+    height: 100%;
+    position: relative;
     padding: 15px;
-    border: 2px solid lightskyblue;
+    /* border: 2px solid lightskyblue; */
 }
 
+#page_content_wrapper::before{
+    content: '';
+    background-image: url("/static/img/bg_1_proj.jpg");
+    background-size: cover;
+    position: absolute;
+    /* filter: grayscale(100%); */
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.2;
+    z-index: -1;
+} 
 /* Change the width of the sidebar to display it */
 
 #wrapper.menuDisplayed #sidebar_wrapper{
@@ -35,8 +49,8 @@
 }
 
 .sidebar_nav li{
-    text-indent: 20px;
-    line-height: 40px;
+    text-indent: 10px;
+    line-height: 30px;
 }
 
 .sidebar_nav li a{
@@ -46,9 +60,33 @@
 }
 
 .sidebar_nav li a:hover{
-    background: #16A085;
+    background: #416a59;
 }
 
 .container-fluid .upcoming_adventures_listed{
     border: 2px solid black;
+}
+
+#menu_toggle{
+    width: 100px;
+    height: 40px;
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+.error{
+    color: red;
+}
+
+.bi-search::before {
+    padding-right: 9px;
+}
+
+.dropdown-content{
+    margin-left: 47px;
+    margin-bottom: 15px;
+}
+
+#description{
+    justify-content: center;
 }
