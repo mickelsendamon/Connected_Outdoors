@@ -65,31 +65,42 @@
             </sidebar>
 
             
-                
+            <div class = "right">   
             {% for adventure in my_adventures %}
-            <div class = "myAdventures">
-                <div class="heading">
-                    <p>placeholder</p>
-                    <a href="/adventure_details/{{adv_id}}">{{adventure.activity.name}}</a>
-                    <p>{{Adventure.adventure_start}}</p>
-                </div> 
-
-                <div class="detail">
-                    <p>{{adventures.location}}</p>
-                    <p>{{adventure.region}}</p>
-                    <p>{{adventure.distance}}</p>
-                    <p>{{adventure.skill_level}}</p>
+                <div class = "myAdventures">
+                    <div class="heading">
+                        <p class = "icon"></p>
+                        <a href="/adventure_detail/{{adv_id}}" class = "activityTitle">{{adventure.activity.name}}</a>
+                        <p class = "datetime">{{adventure.adventure_start}}</p>
+                    </div> 
+                    <div class = "detailContainer">
+                        <div class="detail">
+                            <p class = "detail1">{{adventure.region}}</p>
+                            <p class = "detail2">{{adventure.location}}</p>
+                            <p class = "detail3">Distance: {{adventure.distance}}</p>
+                            <p class = "detail4">Skill Level: {{adventure.skill_level}}</p>
+                        </div>
+                        <div class="equip">
+                            <p>Suggested Equipment</p>               
+                            <ul>
+                                <li>{{adventure.suggested_equipment.name}}</li>
+                            </ul>                    
+                        </div>
+                        <div class = "buttons"> 
+                            {% if adventure.organizer.id != request.session.user_id %}               
+                            <button href = "/leave_adventure/{{adv.id}}" class = "leaveButton">Leave</button>
+                            {% else %}
+                            <button href = "/edit_adventure/{{adv.id}}" class = "editButton">Edit</button>
+                            <form action = "/cancel_adventure/{{adv_id.id}}/delete" class ="cancelButton" method = "POST">                        
+                                {% csrf_token %} 
+                                <input type = "submit" class = "cancelButtonInput"  value="Cancel">             
+                            </form>
+                            {% endif %} 
+                        </div>
+                    </div>
                 </div>
-                <div class="equip">
-                    <p>Suggested Equipment</p>               
-                    <ul>
-                        <li>{{adventure.suggested_equipment.name}}</li>
-                    </ul>                    
-                </div>                
-                <button href = "/leave_adventure/{{adventure.id}}" class = "button">Leave</button>
-            </div>
-            {% endfor %}
-
+                {% endfor %}
+            </div> 
         </section>
     </div>
 </body>
