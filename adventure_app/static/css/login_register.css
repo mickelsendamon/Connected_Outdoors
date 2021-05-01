@@ -8,12 +8,17 @@
     padding-bottom: 0;
 }
 
+.bi-arrow-left-circle{
+    color: #416a59;
+    font-size: 2rem;
+    padding-right: 2%;
+}
 
 .app_title{
     font-family: 'Zen Dots';
     color: #416a59;
     font-size: 4em;
-    text-align: center; */
+    text-align: center; 
 }
 h3{
     margin-bottom: 2%;
@@ -102,3 +107,6 @@ button{
     margin-top: 2%;
 }
 
+#host_email{
+    padding-top: 3%;
+}

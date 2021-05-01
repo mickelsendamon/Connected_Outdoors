@@ -58,18 +58,8 @@
         <div id="sidebar_wrapper">
             <ul class="sidebar_nav">
                 <!-- SPORTS ICONS -->
-                <li><i class="fas fa-hiking"></i><i class="fas fa-biking"></i><i class="fas fa-running"></i><i
-                        class="fas fa-mountain"></i></li>
-                <!-- Searchbar -->
-                <li>
-                    <form id="user_search" method="POST">
-                        <i class="bi bi-search"><input id="searchbar" type="text" name="search"
-                                placeholder="Search"></i>
-                    </form>
-                    <p id="csrf" csrf={{csrf_token}}></p>
-                    <!-- Empty div for search results -->
-                    <div id="search_results"></div>
-                </li>
+                <!-- <li><i class="fas fa-hiking"></i><i class="fas fa-biking"></i><i class="fas fa-running"></i><i
+                        class="fas fa-mountain"></i></li> -->
                 <!-- Regions -->
                 <form action="" method="post">
                     {% csrf_token %}
@@ -104,18 +94,27 @@
                         <select name="activity" class="dropdown-content">
                             <option disabled selected>Select an Activity</option>
                             {% for activity in all_activities %}
-                            <option name="activity_names" value="{{activity.name}}">{{activity.image}} {{activity.name}}/option>
-                            {% endfor %}
+                            <option name="activity_names" value="{{activity.name}}">{{activity.image}}
+                                {{activity.name}}/option>
+                                {% endfor %}
                         </select>
                     </li>
                     <!-- Posters -->
                     <li><i class="fas fa-users"></i><label>All Organizers: </label>
-                        <select name="organizer" class="dropdown-content">
+                        <!-- <select name="organizer" class="dropdown-content">
                             <option disabled selected>Select an Organizer</option>
                             {% for user in all_activities.organizer.all %}
                             <option name="organizer_names" value="{{user.name}}">{{user.name}}</option>
                             {% endfor %}
-                        </select>
+                        </select> -->
+
+                        <form id="user_search" method="POST">
+                            <input id="searchbar" type="text" name="search" placeholder="Search">
+                        </form>
+                        <p id="csrf" csrf={{csrf_token}}></p>
+                        <!-- Empty div for search results -->
+                        <div id="search_results"></div>
+
                     </li>
                 </form>
             </ul>
