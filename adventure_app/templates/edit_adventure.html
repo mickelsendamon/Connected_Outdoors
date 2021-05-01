@@ -21,7 +21,7 @@
                 {% endfor %}
             </ul>
             {% endif %}
-            <form action="/edit_adventure/{{adventure_id}}/update" method="post">
+            <form action="/edit_adventure/{{current_adventure.id}}/update" method="post">
             {% csrf_token %}
                 <label class = "label" >Activity</label>
                 <input type = "text" name = "location"><br><br>
