@@ -70,7 +70,7 @@ class User(models.Model):
 
 class Activity(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    image = models.ImageField()
+    image = models.ImageField(upload_to = "")
     objects = ActivityManager()
 
 
