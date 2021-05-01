@@ -65,12 +65,13 @@ class User(models.Model):
     last_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
+    user_type = models.CharField(max_length=20, default="visitor")
     objects = UserManager()
 
 
 class Activity(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    image = models.ImageField(upload_to = "")
+    image = models.ImageField(upload_to="")
     objects = ActivityManager()
 
 
