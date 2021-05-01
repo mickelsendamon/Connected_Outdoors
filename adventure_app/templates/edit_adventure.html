@@ -13,7 +13,7 @@
         <div>Navigation</div>
         <h1  class = "pageTitle">Edit {{one_adventure.name}}</h1>
 
-        <div class = "new_leftside">
+        <div class = "leftside">
             {% if messages %}
             <ul class="messages">    
                 {% for message in messages %}    
@@ -23,17 +23,17 @@
             {% endif %}
             <form action="/edit_adventure/{{adventure_id}}/update" method="post">
             {% csrf_token %}
-                <label class = "labelNew" >Activity</label>
+                <label class = "label" >Activity</label>
                 <input type = "text" name = "location"><br><br>
                 <select name = "activity" class="dropdown-content">
-                    <option  disabled selected>Select an Activity</option>
+                    <option  disabled selected>Edit an Activity</option>
                     {% for activity in all_activities.all %}                    
                     <option value="{{ activity.id }}">{{one_activity.name}}</option>
                     {% endfor %}             
                 </select><br><br>
                     
                 <label class = "label">Location</label>
-                <input type = "text" name = "location"value = "{{one_adventure.location}}"><br><br>
+                <input type = "text" name = "location" value = "{{one_adventure.location}}"><br><br>
 
                 <label class = "label">Region</label>
                 <select name = "region" class="dropdown-content">
@@ -68,11 +68,11 @@
             </div>
                     
 
-            <div class = "new_rightside">
+            <div class = "rightside">
 
-                <p class = "subtitle_Rt_New">Description:</p>
-                <textarea class = "descNew">{{one_adventure.description}}</textarea>
-                <p class = "subtitle_Rt_New">Suggested Equipment:</p>
+                <p class = "subtitle_Rt">Description:</p>
+                <textarea class = "description">{{one_adventure.description}}</textarea>
+                <p class = "subtitle_Rt">Suggested Equipment:</p>
                 <div class = "scrollbox"> 
                     {% for equipment in all_sg_equipment.all %}
                     <input type="checkbox" id="SuggestedEquipment.name" name="SuggestedEquipment_id" value="{{one_adventure.equipment}}" class = "equip">
