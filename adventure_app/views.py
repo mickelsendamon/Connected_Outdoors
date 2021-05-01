@@ -154,3 +154,14 @@ def create_adventure(request):  # todo add equipment
             return redirect(f'/adventure_detail/{adventure.id}')
         return redirect('/new_adventure')
     return redirect('/')
+
+def create_activity(request):
+    context = {
+        "all_activities": Activity.objects.all(),
+    }
+    return render(request, "activity_form.html", context)
+
+def add_activity(request):
+    if request.method == "POST":
+        new_activity = Activity.objects.create(name = request.POST["activity_name"], image = request.FILES["activity_image"])
+        return redirect("/activity_form")

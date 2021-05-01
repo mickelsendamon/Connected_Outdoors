@@ -28,7 +28,7 @@
 
 <body>
 
-    <!-- Jess NAVBAR CODE -->
+    <!--NAVBAR-->
     <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #f5eec2">
         <div class="container">
             <a href="#" class="btn btn-success" id="menu_toggle"><i class="fas fa-toggle-off"></i> Filter</a>
@@ -58,22 +58,12 @@
         <div id="sidebar_wrapper">
             <ul class="sidebar_nav">
                 <!-- SPORTS ICONS -->
-                <li><i class="fas fa-hiking"></i><i class="fas fa-biking"></i><i class="fas fa-running"></i><i
-                        class="fas fa-mountain"></i></li>
-                <!-- Searchbar -->
-                <li>
-                    <form id="user_search" method="POST">
-                        <i class="bi bi-search"><input id="searchbar" type="text" name="search"
-                                placeholder="Search"></i>
-                    </form>
-                    <p id="csrf" csrf={{csrf_token}}></p>
-                    <!-- Empty div for search results -->
-                    <div id="search_results"></div>
-                </li>
+                <!-- <li><i class="fas fa-hiking"></i><i class="fas fa-biking"></i><i class="fas fa-running"></i><i
+                        class="fas fa-mountain"></i></li> -->
                 <!-- Regions -->
                 <form action="" method="post">
                     {% csrf_token %}
-                    <li><i class="bi bi-signpost-split"></i><label class="label">Region: </label>
+                    <li><i class="bi bi-signpost-split"></i><label class="label" id="region_label">Region: </label>
                         <select name="region" class="dropdown-content">
                             <option disabled selected>Select a Region</option>
                             <option value="southeast">Southeast</option>
@@ -82,35 +72,41 @@
                             <option value="northwest">Northwest</option>
                         </select>
                     </li>
-                    <!-- All Regions -->
-                    <!-- <li>
-                        <p>All Regions:</p>
-                        <label for="south">South</label>
-                        <input type="radio" id="south" name="region" value="south">
-                        <label for="southwest">Southwest</label>
-                        <input type="radio" id="southwest" name="region" value="southwest">
-                    </li> -->
                     <!-- Distances -->
                     <li><i class="fas fa-road"></i><label class="label">All Distances: </label>
                         <select name="distance" class="dropdown-content">
                             <option disabled selected>Select a Distance</option>
+                            {% for distance in all_activities.distance %}
+                            <option name="distances" value="{{distance}}">{{distance}}</option>
+                            {% endfor %}
                         </select>
                     </li>
                     <!-- Adventure Types -->
                     <li><i class="far fa-compass"></i><label class="label">All Adventure Types: </label>
                         <select name="activity" class="dropdown-content">
                             <option disabled selected>Select an Activity</option>
-                            <option activity_id="activity1" value="mountain_biking">Mountain Biking</option>
-                            <option activity_id="activity2" value="rock_climbing">Rock Climbing</option>
-                            <option activity_id="activity3" value="trail_running">Trail Running</option>
-                            <option activity_id="activity4" value="hiking">Hiking</option>
+                            {% for activity in all_activities %}
+                            <option name="activity_names" value="{{activity.name}}">{{activity.image}}
+                                {{activity.name}}/option>
+                                {% endfor %}
                         </select>
                     </li>
                     <!-- Posters -->
                     <li><i class="fas fa-users"></i><label>All Organizers: </label>
-                        <select name="organizer" class="dropdown-content">
+                        <!-- <select name="organizer" class="dropdown-content">
                             <option disabled selected>Select an Organizer</option>
-                        </select>
+                            {% for user in all_activities.organizer.all %}
+                            <option name="organizer_names" value="{{user.name}}">{{user.name}}</option>
+                            {% endfor %}
+                        </select> -->
+
+                        <form id="user_search" method="POST">
+                            <input id="searchbar" type="text" name="search" placeholder="Search">
+                        </form>
+                        <p id="csrf" csrf={{csrf_token}}></p>
+                        <!-- Empty div for search results -->
+                        <div id="search_results"></div>
+
                     </li>
                 </form>
             </ul>
@@ -123,14 +119,17 @@
                         <h1 id="upcoming_adventures">Upcoming Adventures</h1>
                     </div>
                     <div class="col-md-4">
-                        <a class="post_adventure" href='/new_adventure'>Post a New Adventure</a>
+                        <form action="/new_adventure" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" value="New Adventure">Post a New Adventure</button>
+                        </form>
                     </div>
                 </div>
                 <div class="container-fluid upcoming_adventures_listed">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-6"><a href="/adventure_details/{{adventure.id}}"> Title of
+                                <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}"> Title of
                                         Adventure</a></div>
                                 <div class="col-md-6">
                                     <p>Date/Time</p>
@@ -172,32 +171,32 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            // Menu toggle JS
-            $("#menu_toggle").click(function (e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("menuDisplayed");
-            });
-            // Searchbar functionality
-            $('#user_search').keyup(function () {
-                var user_search = $('#searchbar').val()
-                var csrf = $('#csrf').attr("csrf")
-                $.ajax({
-                    url: "/user_search",
-                    method: "post",
-                    data: { 'user_search': user_search, 'csrfmiddlewaretoken': csrf },
-                    success: function (serverResponse) {
-                        $('#search_results').html(serverResponse);
-                    }
-                })
+    </div>
+    <script>
+        // Menu toggle JS
+        $("#menu_toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("menuDisplayed");
+        });
+        // Searchbar functionality
+        $('#user_search').keyup(function () {
+            var user_search = $('#searchbar').val()
+            var csrf = $('#csrf').attr("csrf")
+            $.ajax({
+                url: "/user_search",
+                method: "post",
+                data: { 'user_search': user_search, 'csrfmiddlewaretoken': csrf },
+                success: function (serverResponse) {
+                    $('#search_results').html(serverResponse);
+                }
             })
-        </script>
+        })
+    </script>
 
-        <!-- BOOTSTRAP BUNDLE -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-            crossorigin="anonymous"></script>
+    <!-- BOOTSTRAP BUNDLE -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

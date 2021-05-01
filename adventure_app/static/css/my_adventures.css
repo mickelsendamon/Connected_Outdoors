@@ -1,18 +1,150 @@
 
-        *{
-            outline:  red 1px dotted;
-        }
-        .search{
-            width:  25%;
-            display:  inline-block;
-            vertical-align: top;
-        }
-        .myAdventures{
-            width:  60%;
-            display:  inline-block;
-            vertical-align: top;
-        }
-        .pageTitle{
-            text-align: center;
-        }
+        
+
+*{
+    outline:  red 1px dotted;
+}
+
+/* left side filtering */
+.search{
+    width:  25%;
+    display:  inline-block;
+    vertical-align: top;
+    border:  black 2px solid;
+    margin:  0 50px 0 50px;
+}
+
+    /* header */
+.title{
+    text-align: center;
+    margin-top:  110px;
+}
+.link{
+    margin: 10px 0px 20px 70%;
+    display:  block;
+    height: 30px;
+    width: 200px;
+    text-align:  center;
+    text-decoration:  none;
+    color:  beige;
+    border:  black 2px solid;
+    background-color:  green;
+}
+.link:hover{
+    color: yellow;
+}
+
+
+/* right side */
+.right{
+    width:  60%;
+    display:  inline-block;
+}
+.myAdventures{
+    width:  100%;
+    display:  inline-block;
+    vertical-align: top;
+    border:  black 2px solid;
+    min-height:  310px; 
+    margin-bottom:  30px;   
+}
+
+/* top of detail container */
+.heading{
+    height:  70px;
+}
+.icon{
+    margin: 5px 10px 10px 5px;
+    display:  inline-block;
+    vertical-align:  top;
+    height:  40px;
+    width:  40px;
+}
+.activityTitle{
+    font-size:  22px;
+    display: inline-block;
+    padding-top:  30px;
+    height:  40px;
+    vertical-align:  top;
+}
+.datetime{
+    display:  inline-block;
+    margin-left:  40%;
+    vertical-align:  top;
+}
+
+
+/* main part of container */
+.detailContainer{
+    padding: 0 10px 10px 10px;
+    height:  320px;   
+}
+.detail{
+    display:  inline-block;
+    width:  38%;
+    height:  300px;
+    vertical-align:  top;
+}
+.equip{
+    display:  inline-block;
+    width:  38%;
+    height:  300px;
+    vertical-align:  top;
+}
+
+.detail1{
+    margin: 0;
+}
+.detail2{
+    margin: 40px 0 20px 0;
+}
+.detail3, .detail4{
+    margin:  0 0 20px 20px;
+}
+
+
+/* buttons */
+.leaveButton{
+    width:  100px;
+    height:  30px;
+    margin-top:  270px;
+    margin-left:20px;
+    font-size:  18px;
+}
+.cancelButton{
+    width:  100px;
+    height:  30px;
+    margin-top:  10px;
+    margin-left: 20px;
+}
+.cancelButtonInput{
+    width:  100px;
+    height:  30px;
+    border:  1px solid black;
+    font-size:  18px;
+}
+.editButton{
+    width:  100px;
+    height:  30px;
+    margin-top:  230px;
+    margin-left: 20px;
+    font-size:  18px;
+}
+.buttons{
+    width: 20%;
+    display:  inline-block;
+    margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 

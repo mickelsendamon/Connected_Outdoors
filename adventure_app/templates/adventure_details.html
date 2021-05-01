@@ -13,75 +13,108 @@
     <title>Adventure Details</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/adventure_pg.css' %}">
+
 </head>
 
 <body>
-        <!-- Jess NAVBAR CODE -->
-        <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #f5eec2">
-            <div class="container">
-                <h2 class="navbar-brand">Connected Outdoors</h2>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/adventures">Upcoming Adventures</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/my_adventures">My Adventures</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/logout">Logout</a>
-                        </li>
-                    </ul>
-                </div>
+    <!--NAVBAR  -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #f5eec2">
+        <div class="container">
+            <a href="/adventures"><i class="bi-arrow-left-circle"></i></a>
+            <h2 class="navbar-brand">Connected Outdoors</h2>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/adventures">Upcoming Adventures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/my_adventures">My Adventures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 
     <div class="wrapper">
-        <header>
-            <h3>Adventure</h3>
-            <nav class="nav"></nav>
-            <h1>Location</h1>
-        </header>
-        <div class="advDetailMain">
-            <div class="left">
-                <p>Date</p>
-                <p>Meeting time</p>
-                <p>Region</p>
-                <p>Location</p>
-                <p>Distance</p>
-                <p>Skill Level</p>
+
+        <a href="/adventures"></a>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Adventure</h1>
+                </div>
             </div>
-            <div class="right">
-                <p>Host Email: sldj@hkjhkj</p>
-                <button>Cancel/Leave Adventure</button>
-                <p>Description:</p>
-                <textarea>dfjkdfhkkd</textarea>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Activity Type</h3>
+                </div>
+                <div class="col-md-6">
+                    <form action="/leave_adventure" method="POST">
+                    {% csrf_token}
+                    <button type="submit">Cancel/Leave Adventure</button>
+                    </form>
+                </div>
             </div>
-            <div class="bottom">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Date: </h5>
+                    <p>Placeholder date</p>
+                    <h5>Meeting Time: </h5>
+                    <p>Placeholder time</p>
+                </div>
+                <div class="col-md-6" id="host_email">
+                    <h5>Host Email: </h5>
+                    <p>placeholder@email.com</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="bi bi-signpost-split"></i> Region: </h5>
+                    <p>Placeholder region</p>
+                    <h5>Location: </h5>
+                    <p>Placeholder location</p>
+                    <h5><i class="fas fa-road"></i> Distance: </h5>
+                    <p>Placeholder distance</p>
+
+                </div>
+                <div class="col-md-6">
+                    <h5>Description:</h5>
+                    <textarea>dfjkdfhkkd</textarea>
+                    <h5>Skill Level: </h5>
+                    <p>Placeholder skill level</p>
+                </div>
+            </div>
+            <div class="container" style="border: 2px solid lightgreen">
                 <h3>Participants</h3>
-                <table>
-                    <thead>
+                <table class="table table-striped table-bordered table-hover table-responsive-sm">
+                    <thead class="thead-light">
                         <tr>
-                            <th>Name</th>
-                            <th>Nickname</th>
-                            <th>Last Name</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>James</td>
-                            <td>Jim</td>
-                            <td>Smith</td>
+                            <td scope="row">James</td>
+                            <td scope="row">Jim</td>
+                            <td scope="row">Smith</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
+
     </div>
     <!-- BOOTSTRAP BUNDLE -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
