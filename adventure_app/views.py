@@ -67,7 +67,8 @@ def adventures_page(request):  # todo Matyas & Jess
 def join_adventure(request, adv_id):
     if 'user_id' in request.session:
         this_adventure = Adventure.objects.get(id=adv_id)
-        this_adventure.participants.add(User.objects.get(id=request.session['user_id']))
+        this_adventure.participants.add(
+            User.objects.get(id=request.session['user_id']))
         return redirect(f'adventure_detail/{adv_id}')
     return redirect('/')
 
@@ -133,33 +134,74 @@ def new_adventure(request):
 
 
 def create_adventure(request):  # todo add equipment
-    if 'user_id' in request.session:
-        if request.method == 'POST':
-            location = request.POST['location']
-            region = request.POST['region']
-            distance = request.POST['distance']
-            skill_level = request.POST['skill_level']
-            adventure_start = request.POST['adventure_start']
-            duration = request.POST['duration']
-            meeting_location = request.POST['meeting_location']
-            description = request.POST['description']
-            activity = Activity.objects.get(id=request.POST['activity_id'])  # todo verify this lines up with the HTML
-            adventure = Adventure.objects.create(
-                location=location, region=region, distance=distance, skill_level=skill_level,
-                adventure_start=adventure_start, duration=duration, meeting_location=meeting_location,
-                description=description, activity=activity, organizer=User.objects.get(id=request.session['user_id'])
-            )
-            return redirect(f'/adventure_detail/{adventure.id}')
-        return redirect('/new_adventure')
+    if request.method == "POST":
+        if 'user_id' in request.session:
+            errors = User.objects.basic_validation(request.POST)
+            if len(errors) > 0:
+                for key, value in errors.items():
+                    messages.error(request, value)
+                return redirect('/new_adventure')
+
+            else:
+                location = request.POST['location']
+                region = request.POST['region']
+                distance = request.POST['distance']
+                skill_level = request.POST['skill_level']
+                adventure_start = request.POST['adventure_start']
+                duration = request.POST['duration']
+                meeting_location = request.POST['meeting_location']
+                description = request.POST['description']
+                # todo verify this lines up with the HTML
+                activity = Activity.objects.get(id=request.POST['activity_id'])
+                adventure = Adventure.objects.create(
+                    location=location, region=region, distance=distance, skill_level=skill_level,
+                    adventure_start=adventure_start, duration=duration, meeting_location=meeting_location,
+                    description=description, activity=activity, organizer=User.objects.get(
+                        id=request.session['user_id'])
+                )
+                return redirect(f'/adventure_detail/{adventure.id}')
+        return redirect('/')
     return redirect('/')
 
+
 def create_activity(request):
-    context = {
-        "all_activities": Activity.objects.all(),
-    }
-    return render(request, "activity_form.html", context)
+    if 'user_id' in request.session:
+        context = {
+            "all_activities": Activity.objects.all(),
+        }
+        return render(request, "activity_form.html", context)
+    return redirect('/')
+
 
 def add_activity(request):
     if request.method == "POST":
-        new_activity = Activity.objects.create(name = request.POST["activity_name"], image = request.FILES["activity_image"])
+        new_activity = Activity.objects.create(
+            name=request.POST["activity_name"], image=request.FILES["activity_image"])
         return redirect("/activity_form")
+
+
+def edit_adventure_page(request, adv_id):
+    if 'user_id' in request.session:
+        context = {
+            'current_user': User.objects.get(id=request.session['user_id']),
+            'current_adventure': Adventure.objects.get(id=adv_id),
+        }
+        return render(request, "edit_adventure.html", context)
+    return redirect('/')
+
+
+def edit_adventure(request, adv_id):
+    if 'user_id' in request.session:
+        if request.method == "POST":
+            user = User.objects.get(id=request.session['user_id'])
+            user.location = request.POST['location']
+            user.region = request.POST['region']
+            user.distance = request.POST['distance']
+            user.skill_level = request.POST['skill_level']
+            user.adventure_start = request.POST['adventure_start']
+            user.duration = request.POST['duration']
+            user.meeting_location = request.POST['meeting_location']
+            user.description = request.POST['description']
+            user.save()
+        return redirect(f'edit_adventure/{adv_id}')
+    return redirect('/')
