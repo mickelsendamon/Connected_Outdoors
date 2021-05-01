@@ -94,22 +94,27 @@
                     <li><i class="fas fa-road"></i><label class="label">All Distances: </label>
                         <select name="distance" class="dropdown-content">
                             <option disabled selected>Select a Distance</option>
+                            {% for distance in all_activities.distance %}
+                            <option name="distances" value="{{distance}}">{{distance}}</option>
+                            {% endfor %}
                         </select>
                     </li>
                     <!-- Adventure Types -->
                     <li><i class="far fa-compass"></i><label class="label">All Adventure Types: </label>
                         <select name="activity" class="dropdown-content">
                             <option disabled selected>Select an Activity</option>
-                            <option activity_id="activity1" value="mountain_biking">Mountain Biking</option>
-                            <option activity_id="activity2" value="rock_climbing">Rock Climbing</option>
-                            <option activity_id="activity3" value="trail_running">Trail Running</option>
-                            <option activity_id="activity4" value="hiking">Hiking</option>
+                            {% for activity in all_activities %}
+                            <option name="activity_names" value="{{activity.name}}">{{activity.image}} {{activity.name}}/option>
+                            {% endfor %}
                         </select>
                     </li>
                     <!-- Posters -->
                     <li><i class="fas fa-users"></i><label>All Organizers: </label>
                         <select name="organizer" class="dropdown-content">
                             <option disabled selected>Select an Organizer</option>
+                            {% for user in all_activities.organizer.all %}
+                            <option name="organizer_names" value="{{user.name}}">{{user.name}}</option>
+                            {% endfor %}
                         </select>
                     </li>
                 </form>
@@ -130,7 +135,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-6"><a href="/adventure_details/{{adventure.id}}"> Title of
+                                <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}"> Title of
                                         Adventure</a></div>
                                 <div class="col-md-6">
                                     <p>Date/Time</p>
