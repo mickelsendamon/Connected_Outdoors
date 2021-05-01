@@ -15,4 +15,6 @@ urlpatterns = [
     path('leave_adventure', views.leave_adventure),
     path('adventure_detail/<int:adv_id>', views.adventure_detail),
     path('cancel_adventure/<int:adv_id>', views.cancel_adventure),
+    path('activity_form', views.create_activity),
+    path('add_activity', views.add_activity),
 ]
