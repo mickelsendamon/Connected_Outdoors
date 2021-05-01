@@ -64,13 +64,18 @@
 }
 
 .container-fluid .upcoming_adventures_listed{
-    border: 2px solid black;
+    border: 2px solid #DCD6CB;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+
+
 }
 
 #menu_toggle{
     width: 100px;
     height: 40px;
-    margin-right: 15px;
+    margin-right: 2.5%;
     font-size: 16px;
 }
 
@@ -89,4 +94,19 @@
 
 #description{
     justify-content: center;
+}
+
+.dropdown-content{
+    margin-left: 47px;
+    margin-bottom: 15px;
+    width: 155px;
+}
+
+#searchbar{
+    margin-left: 47px;
+    width: 155px;
+}
+
+#region_label{
+    padding-top: 8%;
 }
