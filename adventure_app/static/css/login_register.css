@@ -90,9 +90,9 @@ button{
     opacity: 0.8;
     z-index: -1;
 } 
+
 .login_form{
     padding-bottom: 3%;
-    background-color: purple;
 }
 
 #create_account{
@@ -110,3 +110,8 @@ button{
 #host_email{
     padding-top: 3%;
 }
+
+.container-fluid .upcoming_adventures_listed{
+    background-color: #FFFFFF;
+}
+
