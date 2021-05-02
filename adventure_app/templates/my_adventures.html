@@ -40,7 +40,7 @@
                     <select name = "distance" class="dropdown-content">
                         <option  disabled selected>Select a Distance</option> 
                         {% for adventure in all_adventures.all %}
-                        <option value="{{adventure.distance}}">{{Adventure.distance}}</option>
+                        <option value="{{adventure.distance}}">{{adventure.distance}}</option>
                         {% endfor %}
                     </select><br><br> 
 
@@ -57,8 +57,8 @@
                     <label>All Posters:</label>
                     <select name = "organizer" class="dropdown-content">
                         <option  disabled selected>Select an Organizer</option> 
-                        {% for organizer in user.organized_adventure.all  %}
-                        <option value="{{user.organized_adventures.first_name}}">{{user.organized_adventures.first_name}}{{user.organized_adventures.last_name}}</option>
+                        {% for organizer in my_adventures.organized_adventures.all  %}
+                        <option value="{{organizer.first_name}}">{{organizer.first_name}}{{organizer.last_name}}</option>
                         {% endfor %}
                     </select><br><br> 
                 </form>           
