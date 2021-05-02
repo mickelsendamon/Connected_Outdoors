@@ -23,6 +23,21 @@
     <img src="{{activity.image.url}}">
     {% endif %}
     {% endfor %}
+
+    <h1>All Suggested Equipments</h1>
+    {% for equipment in all_sg_equipment %}
+    <ul>
+        <li>{{ equipment.name }}</li>
+    </ul>
+    {% endfor%}
+
+    <form action="/add_sg_equpiment" method="POST">
+        {% csrf_token %}
+        <label>Name</label><input type="text" name="equipment_name">
+        <label>Description</label><input type="text" name="description">
+        <button type="submit" name="submit">Create Equipment</button>
+    </form>
+
     {% endif %}
 </body>
 

@@ -76,8 +76,10 @@
                     <li><i class="fas fa-road"></i><label class="label">All Distances: </label>
                         <select name="distance" class="dropdown-content">
                             <option disabled selected>Select a Distance</option>
-                            {% for distance in all_activites.distance %}
-                            <option name="distances" value="{{distance}}">{{.distance}}</option>
+
+                            {% for distance in all_adventures %}
+                            <option name="distances" value="{{distance.distance}}">{{distance.distance}}</option>
+
                             {% endfor %}
                         </select>
                     </li>

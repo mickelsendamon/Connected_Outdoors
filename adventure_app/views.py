@@ -118,6 +118,7 @@ def cancel_adventure(request, adv_id):
         if Adventure.objects.filter(id=adv_id):
             this_adventure = Adventure.objects.get(id=adv_id)
             this_adventure.delete()
+            return redirect('/my_adventures')
         else:
             messages.error(request, 'Could not locate a matching Adventure')
     return redirect('/adventures')
@@ -136,7 +137,7 @@ def new_adventure(request):
 def create_adventure(request):  # todo add equipment
     if request.method == "POST":
         if 'user_id' in request.session:
-            errors = User.objects.basic_validation(request.POST)
+            errors = Adventure.objects.adventure_validation(request.POST)
             if len(errors) > 0:
                 for key, value in errors.items():
                     messages.error(request, value)
@@ -151,14 +152,21 @@ def create_adventure(request):  # todo add equipment
                 duration = request.POST['duration']
                 meeting_location = request.POST['meeting_location']
                 description = request.POST['description']
-                # todo verify this lines up with the HTML
+                sg_equipment = request.POST.getlist('suggested_equipment')
+
                 activity = Activity.objects.get(id=request.POST['activity_id'])
                 adventure = Adventure.objects.create(
                     location=location, region=region, distance=distance, skill_level=skill_level,
                     adventure_start=adventure_start, duration=duration, meeting_location=meeting_location,
                     description=description, activity=activity, organizer=User.objects.get(
-                        id=request.session['user_id'])
+                        id=request.session['user_id'],)
                 )
+                for equipment in sg_equipment:
+                    equipment_object = SuggestedEquipment.objects.get(
+                        id=equipment)
+                    adventure.suggested_equipment.add(equipment_object)
+                    print(equipment_object)
+                print(sg_equipment)
                 return redirect(f'/adventure_detail/{adventure.id}')
         return redirect('/')
     return redirect('/')
@@ -169,6 +177,7 @@ def create_activity(request):
         context = {
             "all_activities": Activity.objects.all(),
             'current_user': User.objects.get(id=request.session['user_id']),
+            'all_sg_equipment': SuggestedEquipment.objects.all(),
         }
         return render(request, "activity_form.html", context)
     return redirect('/')
@@ -178,6 +187,15 @@ def add_activity(request):
     if request.method == "POST":
         new_activity = Activity.objects.create(
             name=request.POST["activity_name"], image=request.FILES["activity_image"])
+
+        return redirect("/activity_form")
+
+
+def add_sg_equipment(request):
+    if request.method == "POST":
+        new_equpiment = SuggestedEquipment.objects.create(
+            name=request.POST['equipment_name'], description=request.POST['description']
+        )
         return redirect("/activity_form")
 
 
