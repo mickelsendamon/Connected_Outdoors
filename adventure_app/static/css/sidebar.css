@@ -19,19 +19,19 @@
     /* border: 2px solid lightskyblue; */
 }
 
-#page_content_wrapper::before{
+/* #page_content_wrapper::before{
     content: '';
     background-image: url("/static/img/bg_1_proj.jpg");
     background-size: cover;
     position: absolute;
     /* filter: grayscale(100%); */
-    top: 0px;
+    /* top: 0px;
     right: 0px;
     bottom: 0px;
     left: 0px;
     opacity: 0.2;
     z-index: -1;
-} 
+}  */ 
 /* Change the width of the sidebar to display it */
 
 #wrapper.menuDisplayed #sidebar_wrapper{
