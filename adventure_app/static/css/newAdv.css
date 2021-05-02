@@ -1,13 +1,16 @@
 *{
     margin: 0;
     padding: 0;
-    outline:  red dotted 2px; */
 }
 
         
 .wrapper{
-    width:   1200px;
-    padding: 10px;
+    width:   auto;
+    margin:  31px 0 60px 3%;
+    border: 2px solid #DCD6CB;
+    -moz-box-shadow:    3px 3px 5px 6px #DCD6CB;
+    -webkit-box-shadow: 3px 3px 5px 6px #DCD6CB;
+    box-shadow:         3px 3px 5px 6px #DCD6CB;
 }
 .pageTitle{
     text-align: center;

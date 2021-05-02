@@ -72,21 +72,23 @@
                         </select>
                     </li>
                     <li><i class="fas fa-signal"></i>
-                        <label class="label">Difficulty:</label><br>
+                        <label class="label">Difficulty:</label>
                         <select name="difficulty" class="dropdown-content">
                             <option disabled selected>Select a Difficulty Level</option>
-                            {% for adventure in all_adventures.all %}
-                            <option value="{{adventure.skill_level}}">{{adventure.skill_level}}</option>
-                            {% endfor %}
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                            <option value="Master">Master</option>
                         </select>
                     </li>
-                    <li><i class="far fa-compass"></i>
-                        <label class="label">All Adventure Types:</label>
+                    <li><i class="fas fa-mountain"></i>
+                        <label class="label">All Activity Types:</label>
                         <select name="activity_id" class="dropdown-content">
                             <option disabled selected>Select an Activity</option>
-                            {% for activities in all_activities.all %}
-                            <option value="{{activities.id}}">{{activities.name}}</option>
-                            {% endfor %}
+                            <option value="Trail Running">Trail Running</option>
+                            <option value="Mountain Biking">Mountain Biking</option>
+                            <option value="Hiking">Hiking</option>
+                            <option value="Rock Climbing">Rock Climbing</option>
                         </select>
                     </li>
                     <li>
@@ -106,7 +108,7 @@
                         <form action="/new_adventure" method="POST">
                             {% csrf_token %}
                             <button type="submit" value="New Adventure">Post a New Adventure</button>
-                        </form>                    </div>
+                        </form>                    
                 </div>
                 {% for adventure in my_adventures %}
                 <div class="row">
