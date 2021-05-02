@@ -56,7 +56,7 @@ def adventures_page(request):  # todo Matyas & Jess
     if 'user_id' in request.session:
         context = {
             'current_user': User.objects.get(id=request.session['user_id']),
-            'all_adventures': Adventure.objects.all().order_by('-adventure_start'),
+            'all_adventures': Adventure.objects.all().order_by('adventure_start'),
             'all_sg_equipment': SuggestedEquipment.objects.all(),
             'all_activities': Activity.objects.all(),
         }
@@ -69,7 +69,7 @@ def join_adventure(request, adv_id):
         this_adventure = Adventure.objects.get(id=adv_id)
         this_adventure.participants.add(
             User.objects.get(id=request.session['user_id']))
-        return redirect(f'adventure_detail/{adv_id}')
+        return redirect(f'/adventure_detail/{adv_id}')
     return redirect('/')
 
 
@@ -80,7 +80,7 @@ def leave_adventure(request, adv_id):  # todo done
             user = User.objects.get(id=request.session['user_id'])
             this_adventure = Adventure.objects.get(id=adv_id)
             this_adventure.participants.remove(user)
-    return redirect('/adventures')
+    return redirect('/my_adventures')
 
 
 def my_adventures(request):  # todo done
@@ -90,9 +90,9 @@ def my_adventures(request):  # todo done
         return redirect('/')
     user = User.objects.get(id=request.session['user_id'])
     my_advs = []
-    for adv in user.organized_adventures.all():
+    for adv in user.organized_adventures.all().order_by('adventure_start'):
         my_advs.append(adv)
-    for adv in user.participated_adventures.all():
+    for adv in user.participated_adventures.all().order_by('adventure_start'):
         my_advs.append(adv)
     context = {
         'current_user': user,
@@ -204,6 +204,7 @@ def edit_adventure_page(request, adv_id):
         context = {
             'current_user': User.objects.get(id=request.session['user_id']),
             'current_adventure': Adventure.objects.get(id=adv_id),
+            'all_sg_equipment': SuggestedEquipment.objects.all(),
         }
         return render(request, "edit_adventure.html", context)
     return redirect('/')
@@ -212,15 +213,15 @@ def edit_adventure_page(request, adv_id):
 def edit_adventure(request, adv_id):
     if 'user_id' in request.session:
         if request.method == "POST":
-            user = User.objects.get(id=request.session['user_id'])
-            user.location = request.POST['location']
-            user.region = request.POST['region']
-            user.distance = request.POST['distance']
-            user.skill_level = request.POST['skill_level']
-            user.adventure_start = request.POST['adventure_start']
-            user.duration = request.POST['duration']
-            user.meeting_location = request.POST['meeting_location']
-            user.description = request.POST['description']
-            user.save()
-        return redirect(f'edit_adventure/{adv_id}')
+            adventure = Adventure.objects.get(id=adv_id)
+            adventure.location = request.POST['location']
+            adventure.region = request.POST['region']
+            adventure.distance = request.POST['distance']
+            adventure.skill_level = request.POST['skill_level']
+            adventure.adventure_start = request.POST['adventure_start']
+            adventure.duration = request.POST['duration']
+            adventure.meeting_location = request.POST['meeting_location']
+            adventure.description = request.POST['description']
+            adventure.save()
+        return redirect(f'/edit_adventure/{adv_id}')
     return redirect('/')

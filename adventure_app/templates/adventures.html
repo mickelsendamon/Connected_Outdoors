@@ -90,7 +90,7 @@
                             {% for activity in all_activities %}
                             <option name="activity_names" value="{{activity.name}}">{{activity.image}}
                                 {{activity.name}}</option>
-                                {% endfor %}
+                            {% endfor %}
                         </select>
                     </li>
                     <!-- Posters -->
@@ -132,8 +132,9 @@
                         {% for adventure in all_adventures.all%}
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}"> {{adventure.location}}
-                            </a></div>
+                                <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}">
+                                        {{adventure.location}}
+                                    </a></div>
                                 <div class="col-md-6">
                                     <p>{{adventure.adventure_start}}</p>
                                 </div>
@@ -155,12 +156,14 @@
                                     <div class="col-md-5">
                                         <h5>Suggested Equipment</H5>
                                         <ul>
-                                            <li>{{adventure.suggested_equipment.name}}</li>
+                                            {% for equipment in adventure.suggested_equipment.all %}
+                                            <li>{{equipment.name}}</li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
-                                    <div class="col-md-2">
+                                    <!--<div class="col-md-2">
                                         <a href="/join_adventure/{{adventure.id}}">Join</a>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
