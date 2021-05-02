@@ -14,12 +14,12 @@
     <title>New Adventure</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/newAdv.css' %}">
-        <!-- CSS -->
-        <link rel="stylesheet" href="{% static 'css/login_register.css' %}">
-        <!-- FONT -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
-    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/login_register.css' %}">
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+
 
 </head>
 
@@ -93,7 +93,7 @@
                 </select><br><br>
 
                 <label class="label">Adventure Start</label>
-                <input type="datetime" name="adventure_start" id="adventure_start" class="time"><br><br>
+                <input type="datetime-local" name="adventure_start" id="adventure_start" class="time"><br><br>
 
                 <label class="label">Duration:</label>
                 <input type="text" name="duration"><br><br>
@@ -109,10 +109,10 @@
                 <p class="subtitle_Rt_New">Suggested Equipment:</p>
                 <div class="scrollbox">
                     {% for equipment in all_sg_equipment.all %}
-                    <input type="checkbox" value="{{SuggestedEquipment.name}}" name={{suggested_equipment_id}}>
+                    <input type="checkbox" value="{{equipment.id}}" name="suggested_equipment">
                     <label for="{{SuggestedEquipment.name}}">{{equipment.name}}</label><br>
                     {% endfor %}
-                    </select><br><br>
+
 
                 </div>
             </div>

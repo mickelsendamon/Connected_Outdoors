@@ -39,13 +39,13 @@ class SuggestedEquipmentManager(models.Manager):
         errors = {}
         if len(post_data['name']) < 1:
             errors["name"] = "The name field can't be empty!"
-        if len(post_data['description']) < 10:
-            errors["description"] = "The description has to be at least 10 characters long!"
+        if len(post_data['description']) < 5:
+            errors["description"] = "The description has to be at least 5 characters long!"
         return errors
 
 
 class AdventureManager(models.Manager):
-    def basic_validation(self, post_data):
+    def adventure_validation(self, post_data):
         errors = {}
         if len(post_data['location']) < 1:
             errors["location"] = "The location field can't be empty!"
@@ -65,12 +65,13 @@ class User(models.Model):
     last_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
+    user_type = models.CharField(max_length=20, default="visitor")
     objects = UserManager()
 
 
 class Activity(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    image = models.ImageField(upload_to = "")
+    image = models.ImageField(upload_to="")
     objects = ActivityManager()
 
 

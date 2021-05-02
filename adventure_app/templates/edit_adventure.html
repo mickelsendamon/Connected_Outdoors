@@ -1,80 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Adventure</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/edit_adventures.css' %}">        
+    <link rel="stylesheet" href="{% static 'css/edit_adventures.css' %}">
 </head>
-<body>
-    <div class = "wrapper">
-        <div>Navigation</div>
-        <h1  class = "pageTitle">Edit {{one_adventure.name}}</h1>
 
-        <div class = "leftside">
+<body>
+    <div class="wrapper">
+        <div>Navigation</div>
+        <h1 class="pageTitle">Edit {{current_adventure.name}}</h1>
+
+        <div class="leftside">
             {% if messages %}
-            <ul class="messages">    
-                {% for message in messages %}    
-                <li>{{ message }}</li>    
+            <ul class="messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
                 {% endfor %}
             </ul>
             {% endif %}
-            <form action="/edit_adventure/{{adv_id}}/update" method="post">
-            {% csrf_token %}
-                    
-                <label class = "label">Location</label>
-                <input type = "text" name = "location" value = "{{current_adventure.location}}"><br><br>
 
-                <label class = "label">Region</label>
-                <select name = "region" class="dropdown-content">
-                    <option  disabled selected>Select a Region</option> 
+            <form action="/edit_adventure/{{current_adventure.id}}/update" method="post">
+                {% csrf_token %}
+
+                <label class="label">Location</label>
+                <input type="text" name="location" value="{{current_adventure.location}}"><br><br>
+
+                <label class="label">Region</label>
+                <select name="region" class="dropdown-content">
+                    <option disabled selected>Select a Region</option>
                     <option value="{{southeast}}">Southeast</option>
                     <option value="{{southwest}}">Southwest</option>
-                    <option value="{{northeast}}">Northeast</option> 
-                    <option value="{{northwest}}">Northwest</option> 
+                    <option value="{{northeast}}">Northeast</option>
+                    <option value="{{northwest}}">Northwest</option>
                 </select><br><br>
 
-                <label class = "label">Distance</label>
-                <input type = "text" name = "distance" value = "{{current_adventure.distance}}"><br><br>
 
-                <label class = "label">Skill Level</label>
-                <select name = "skill_level" class="dropdown-content">
-                    <option  disabled selected>Select a skill level</option> 
-                    <option value="{{beginner}}">Beginner</option>                    
+                <label class="label">Distance</label>
+                <input type="text" name="distance" value="{{current_adventure.distance}}"><br><br>
+
+                <label class="label">Skill Level</label>
+                <select name="skill_level" class="dropdown-content">
+                    <option disabled selected>Select a skill level</option>
+                    <option value="{{beginner}}">Beginner</option>
                     <option value="{{intermediate}}">Intermediate</option>
                     <option value="{{advanced}}">Advanced</option>
                     <option value="{{master}}">Master</option>
                 </select><br><br>
 
-                <label class = "label">Adventure Start</label>
-                <input type = "datetime-local" id="adventure_start" name = "adventure_start" ><br><br>
-                
 
-                <label class = "label">Duration:</label>
-                <input type = "text" name = "duration" value = "{{current_adventure.duration}}"><br><br>
+                <label class="label">Adventure Start</label>
+                <input type="datetime-local" id="adventure_start" name="adventure_start"
+                    value="{{current_adventure.adventure_start}}"><br><br>
 
-                <label class = "label">Meeting Location</label>
-                <input type = "text" name = "location" value = "{{current_adventure.meeting_location}}"><br><br>
+
+                <label class="label">Duration:</label>
+                <input type="text" name="duration" value="{{current_adventure.duration}}"><br><br>
+
+                <label class="label">Meeting Location</label>
+                <input type="text" name="meeting_location" value="{{current_adventure.meeting_location}}"><br><br>
+        </div>
+
+
+        <div class="rightside">
+
+            <p class="subtitle_Rt">Description:</p>
+            <textarea class="description" name="description">{{current_adventure.description}}</textarea>
+            <p class="subtitle_Rt">Suggested Equipment:</p>
+            <div class="scrollbox">
+                {% for equipment in all_sg_equipment.all %}
+                <input type="checkbox" value="{{equipment.id}}" name="suggested_equipment">
+                <label for="{{SuggestedEquipment.name}}">{{equipment.name}}</label><br>
+                {% endfor %}
             </div>
-                    
+        </div>
 
-            <div class = "rightside">
-
-                <p class = "subtitle_Rt">Description:</p>
-                <textarea class = "description">{{current_adventure.description}}</textarea>
-                <p class = "subtitle_Rt">Suggested Equipment:</p>
-                <div class = "scrollbox"> 
-                    {% for equipment in all_sg_equipment.all %}
-                    <input type="checkbox" id="SuggestedEquipment.name" name="suggested_equipment_id" value="{SuggestedEquipment.name}}" class = "equip">
-                    <label for="SuggestedEquipment.name"> {{current_adventure.equipment}}</label><br> 
-                    {% endfor %}                   
-                </div>
-            </div>
-
-            <button type="submit" class = "submit_button">Update</button>
+        <button type="submit" class="submit_button">Update</button>
         </form>
-    </div>    
+    </div>
 </body>
+
 </html>
