@@ -225,3 +225,4 @@ def edit_adventure(request, adv_id):
             adventure.save()
         return redirect(f'/edit_adventure/{adv_id}')
     return redirect('/')
+
