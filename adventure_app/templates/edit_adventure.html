@@ -21,19 +21,11 @@
                 {% endfor %}
             </ul>
             {% endif %}
-            <form action="/edit_adventure/{{adventure_id}}/update" method="post">
+            <form action="/edit_adventure/{{adv_id}}/update" method="post">
             {% csrf_token %}
-                <label class = "label" >Activity</label>
-                <input type = "text" name = "location"><br><br>
-                <select name = "activity" class="dropdown-content">
-                    <option  disabled selected>Edit an Activity</option>
-                    {% for activity in all_activities.all %}                    
-                    <option value="{{ activity.id }}">{{one_activity.name}}</option>
-                    {% endfor %}             
-                </select><br><br>
                     
                 <label class = "label">Location</label>
-                <input type = "text" name = "location" value = "{{one_adventure.location}}"><br><br>
+                <input type = "text" name = "location" value = "{{current_adventure.location}}"><br><br>
 
                 <label class = "label">Region</label>
                 <select name = "region" class="dropdown-content">
@@ -45,7 +37,7 @@
                 </select><br><br>
 
                 <label class = "label">Distance</label>
-                <input type = "text" name = "distance" value = "{{one_adventure.distance}}"><br><br>
+                <input type = "text" name = "distance" value = "{{current_adventure.distance}}"><br><br>
 
                 <label class = "label">Skill Level</label>
                 <select name = "skill_level" class="dropdown-content">
@@ -57,26 +49,26 @@
                 </select><br><br>
 
                 <label class = "label">Adventure Start</label>
-                <input type = "datetime" id="adventure_start" name = "adventure_start" value = "{{one_adventure.adventure_start|date:'%m/%d/%y %H:%M''}}"><br><br>
+                <input type = "datetime-local" id="adventure_start" name = "adventure_start" ><br><br>
                 
 
                 <label class = "label">Duration:</label>
-                <input type = "text" name = "duration" value = "{{one_adventure.duration}}"><br><br>
+                <input type = "text" name = "duration" value = "{{current_adventure.duration}}"><br><br>
 
                 <label class = "label">Meeting Location</label>
-                <input type = "text" name = "location" value = "{{one_adventure.meeting_location}}"><br><br>
+                <input type = "text" name = "location" value = "{{current_adventure.meeting_location}}"><br><br>
             </div>
                     
 
             <div class = "rightside">
 
                 <p class = "subtitle_Rt">Description:</p>
-                <textarea class = "description">{{one_adventure.description}}</textarea>
+                <textarea class = "description">{{current_adventure.description}}</textarea>
                 <p class = "subtitle_Rt">Suggested Equipment:</p>
                 <div class = "scrollbox"> 
                     {% for equipment in all_sg_equipment.all %}
-                    <input type="checkbox" id="SuggestedEquipment.name" name="SuggestedEquipment_id" value="{{one_adventure.equipment}}" class = "equip">
-                    <label for="equipment"> {{one_adventure.equipment.name}}</label><br> 
+                    <input type="checkbox" id="SuggestedEquipment.name" name="suggested_equipment_id" value="{SuggestedEquipment.name}}" class = "equip">
+                    <label for="SuggestedEquipment.name"> {{current_adventure.equipment}}</label><br> 
                     {% endfor %}                   
                 </div>
             </div>

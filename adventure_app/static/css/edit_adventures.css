@@ -1,17 +1,35 @@
     
+*{
+    margin: 0;
+    padding: 0;
+}
+
+        
 .wrapper{
     width:   1200px;
     padding: 10px;
 }
 .pageTitle{
     text-align: center;
+    margin:  80px 0 60px 0;
 }
 .leftside{
-    width:  47%;
+    width:  44%;
     display:  inline-block;
     height:  600px;
     vertical-align: top;
     text-align:  left;
+    margin-left:  80px    
+}
+.dropdown-content{
+    width:  225px;
+    font-size:  18px;
+}
+.label{
+    margin: 10px;
+    width:  150px; 
+    height:  25px;
+    display:  inline-block;
 }
 .rightside{
     width:  47%;
@@ -19,34 +37,49 @@
     display:  inline-block;
     vertical-align: top;
 }
-.label{
-    margin-right: 10px;
-    width:  10%; 
+.date{
+    width:  50px;
+}
+.time{
+    width:  50px;
 }
 .leftside input{
-    width:  200px; 
+    width:  225px; 
+    height:  25px;
+    font-size: 18px;
 }
 .description{
-    width:  300px;
+    width:  310px;
     height:  200px;
-    margin-left:  20%;
+    margin:  10px 20% 75px;
 }
 .equip{
     width:  20px;
 }
 .subtitle_Rt{
-    margin-left:  20%;
+    margin-left:  2%;
 }
 .scrollbox{
-    width: 150px;
+    width: 300px;
     height: 150px; 
-    line-height: 3em; 
+    line-height: 2em; 
     overflow:scroll; 
     border: thin #000 solid;
     padding: 5px;
-    margin-left:  20%;
+    margin: 10px 20%;
+}
+.scrollbox label{
+    margin:  0 15px;
+}
+.scrollbox input{
+    margin:  0 5px;
 }
 .submit_button{
-    width: 200px;
+    width: 100px;
+    height:  30px;
     margin: 30px 42%;
+}
+
+#back_button{
+    padding-right: 1.5%;
 }

@@ -163,3 +163,4 @@ def add_activity(request):
     if request.method == "POST":
         new_activity = Activity.objects.create(name = request.POST["activity_name"], image = request.FILES["activity_image"])
         return redirect("/activity_form")
+
