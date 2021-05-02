@@ -25,14 +25,6 @@
             {% endif %}
             <form action="/edit_adventure/{{current_adventure.id}}/update" method="post">
                 {% csrf_token %}
-                <label class="label">Activity</label>
-                <input type="text" name="location"><br><br>
-                <select name="activity" class="dropdown-content">
-                    <option disabled selected>Edit an Activity</option>
-                    {% for activity in all_activities.all %}
-                    <option value="{{ activity.id }}">{{one_activity.name}}</option>
-                    {% endfor %}
-                </select><br><br>
 
                 <label class="label">Location</label>
                 <input type="text" name="location" value="{{current_adventure.location}}"><br><br>
@@ -59,7 +51,7 @@
                 </select><br><br>
 
                 <label class="label">Adventure Start</label>
-                <input type="datetime" id="adventure_start" name="adventure_start"
+                <input type="datetime-local" id="adventure_start" name="adventure_start"
                     value="{{current_adventure.adventure_start}}"><br><br>
 
 
@@ -67,20 +59,19 @@
                 <input type="text" name="duration" value="{{current_adventure.duration}}"><br><br>
 
                 <label class="label">Meeting Location</label>
-                <input type="text" name="location" value="{{current_adventure.meeting_location}}"><br><br>
+                <input type="text" name="meeting_location" value="{{current_adventure.meeting_location}}"><br><br>
         </div>
 
 
         <div class="rightside">
 
             <p class="subtitle_Rt">Description:</p>
-            <textarea class="description">{{current_adventure.description}}</textarea>
+            <textarea class="description" name="description">{{current_adventure.description}}</textarea>
             <p class="subtitle_Rt">Suggested Equipment:</p>
             <div class="scrollbox">
                 {% for equipment in all_sg_equipment.all %}
-                <input type="checkbox" id="SuggestedEquipment.name" name="SuggestedEquipment_id"
-                    value="{{current_adventure.equipment}}" class="equip">
-                <label for="equipment"> {{current_adventure.equipment.name}}</label><br>
+                <input type="checkbox" value="{{equipment.id}}" name="suggested_equipment">
+                <label for="{{SuggestedEquipment.name}}">{{equipment.name}}</label><br>
                 {% endfor %}
             </div>
         </div>
