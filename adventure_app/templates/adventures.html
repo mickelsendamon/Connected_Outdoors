@@ -57,10 +57,6 @@
         <!-- SIDEBAR -->
         <div id="sidebar_wrapper">
             <ul class="sidebar_nav">
-                <!-- SPORTS ICONS -->
-                <!-- <li><i class="fas fa-hiking"></i><i class="fas fa-biking"></i><i class="fas fa-running"></i><i
-                        class="fas fa-mountain"></i></li> -->
-                <!-- Regions -->
                 <form action="" method="post">
                     {% csrf_token %}
                     <li><i class="bi bi-signpost-split"></i><label class="label" id="region_label">Region: </label>
@@ -72,14 +68,12 @@
                             <option value="northwest">Northwest</option>
                         </select>
                     </li>
-                    <!-- Distances -->
-                    <li><i class="fas fa-road"></i><label class="label">All Distances: </label>
-                        <select name="distance" class="dropdown-content">
-                            <option disabled selected>Select a Distance</option>
-
-                            {% for distance in all_adventures %}
-                            <option name="distances" value="{{distance.distance}}">{{distance.distance}}</option>
-
+                    <li><i class="fas fa-signal"></i>
+                        <label class="label">Difficulty:</label><br>
+                        <select name="difficulty" class="dropdown-content">
+                            <option disabled selected>Select a Difficulty Level</option>
+                            {% for adventure in all_adventures.all %}
+                            <option value="{{adventure.skill_level}}">{{adventure.skill_level}}</option>
                             {% endfor %}
                         </select>
                     </li>
@@ -93,22 +87,8 @@
                             {% endfor %}
                         </select>
                     </li>
-                    <!-- Posters -->
-                    <li><i class="fas fa-users"></i><label>All Organizers: </label>
-                        <!-- <select name="organizer" class="dropdown-content">
-                            <option disabled selected>Select an Organizer</option>
-                            {% for user in all_activities.organizer.all %}
-                            <option name="organizer_names" value="{{user.name}}">{{user.name}}</option>
-                            {% endfor %}
-                        </select> -->
-
-                        <form id="user_search" method="POST">
-                            <input id="searchbar" type="text" name="search" placeholder="Search">
-                        </form>
-                        <p id="csrf" csrf={{csrf_token}}></p>
-                        <!-- Empty div for search results -->
-                        <div id="search_results"></div>
-
+                    <li>
+                        <button type="submit" name="filter_submit" class="filter_submit">Submit</button>
                     </li>
                 </form>
             </ul>

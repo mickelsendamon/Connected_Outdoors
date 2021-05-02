@@ -53,23 +53,21 @@
     line-height: 30px;
 }
 
-.sidebar_nav li a{
+/* .sidebar_nav li a{
     display: block;
     text-decoration: none;
     color: #ddd;
-}
+} */
 
-.sidebar_nav li a:hover{
+/* .sidebar_nav li a:hover{
     background: #416a59;
-}
+} */
 
 .container-fluid .upcoming_adventures_listed{
     border: 2px solid #DCD6CB;
     -webkit-box-shadow: 0 8px 6px -6px black;
     -moz-box-shadow: 0 8px 6px -6px black;
     box-shadow: 0 8px 6px -6px black;
-
-
 }
 
 #menu_toggle{
@@ -109,4 +107,9 @@
 
 #region_label{
     padding-top: 8%;
+}
+
+.filter_submit{
+    margin-left: 77px;
+    margin-top: 10px;
 }
