@@ -72,19 +72,20 @@
                         <label class="label">Difficulty:</label><br>
                         <select name="difficulty" class="dropdown-content">
                             <option disabled selected>Select a Difficulty Level</option>
-                            {% for adventure in all_adventures.all %}
-                            <option value="{{adventure.skill_level}}">{{adventure.skill_level}}</option>
-                            {% endfor %}
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                            <option value="master">Master</option>
                         </select>
                     </li>
                     <!-- Adventure Types -->
-                    <li><i class="far fa-compass"></i><label class="label">All Adventure Types: </label>
+                    <li><i class="fas fa-mountain"></i><label class="label">All Adventure Types: </label>
                         <select name="activity" class="dropdown-content">
                             <option disabled selected>Select an Activity</option>
-                            {% for activity in all_activities %}
-                            <option name="activity_names" value="{{activity.name}}">{{activity.image}}
-                                {{activity.name}}</option>
-                            {% endfor %}
+                            <option value="Trail Running">Trail Running</option>
+                            <option value="Mountain Biking">Mountain Biking</option>
+                            <option value="Hiking">Hiking</option>
+                            <option value="Rock Climbing">Rock Climbing</option>
                         </select>
                     </li>
                     <li>
@@ -112,8 +113,9 @@
                         {% for adventure in all_adventures.all%}
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}">
-                                        {{adventure.location}}
+                                <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}"><h3>
+                                    {{adventure.activity.name}}</h3>
+                                    
                                     </a></div>
                                 <div class="col-md-6">
                                     <p>{{adventure.adventure_start}}</p>
@@ -124,10 +126,10 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <h5>Type: </h5>
-                                        <h6>{{adventure.activity.name}}</h6>
-                                        <h5>Region: </h5>
-                                        <h6>{{adventure.region}}</h6>
+                                        <h5>Location: </h5><h6>{{adventure.location}}</h6>
+                                        
+                                        <h5>Region: </h5><h6>{{adventure.region}}</h6>
+                                        <h5>Meeting Spot: </h5><h6>{{adventure.meeting_location}}</h6>
                                         <h5>Distance: </h5>
                                         <h6>{{adventure.distance}}</h6>
                                         <h5>Skill level: </h5>

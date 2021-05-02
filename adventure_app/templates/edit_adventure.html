@@ -56,7 +56,6 @@
         </div>
     </nav>
     <div class="wrapper">
-        <div>Navigation</div>
         <h1 class="pageTitle">Edit {{current_adventure.name}}</h1>
 
         <div class="leftside">
@@ -71,11 +70,11 @@
             <form action="/edit_adventure/{{current_adventure.id}}/update" method="post">
                 {% csrf_token %}
 
-                <label class="label">Location</label>
+                <label class="label">Location:</label>
                 <input type="text" name="location" value="{{current_adventure.location}}"><br><br>
 
-                <label class="label">Region</label>
-                <select name="region" class="dropdown-content">
+                <label class="label">Region:</label>
+                <select name="region" class="dropdown-content-edit">
                     <option disabled selected>Select a Region</option>
                     <option value="{{southeast}}">Southeast</option>
                     <option value="{{southwest}}">Southwest</option>
@@ -84,11 +83,11 @@
                 </select><br><br>
 
 
-                <label class="label">Distance</label>
+                <label class="label">Distance:</label>
                 <input type="text" name="distance" value="{{current_adventure.distance}}"><br><br>
 
-                <label class="label">Skill Level</label>
-                <select name="skill_level" class="dropdown-content">
+                <label class="label">Skill Level:</label>
+                <select name="skill_level" class="dropdown-content-edit">
                     <option disabled selected>Select a skill level</option>
                     <option value="{{beginner}}">Beginner</option>
                     <option value="{{intermediate}}">Intermediate</option>
@@ -97,7 +96,7 @@
                 </select><br><br>
 
 
-                <label class="label">Adventure Start</label>
+                <label class="label">Adventure Start:</label>
                 <input type="datetime-local" id="adventure_start" name="adventure_start"
                     value="{{current_adventure.adventure_start}}"><br><br>
 
@@ -105,7 +104,7 @@
                 <label class="label">Duration:</label>
                 <input type="text" name="duration" value="{{current_adventure.duration}}"><br><br>
 
-                <label class="label">Meeting Location</label>
+                <label class="label">Meeting Location:</label>
                 <input type="text" name="meeting_location" value="{{current_adventure.meeting_location}}"><br><br>
         </div>
 
@@ -122,7 +121,6 @@
                 {% endfor %}
             </div>
         </div>
-
         <button type="submit" class="submit_button">Update</button>
         </form>
     </div>
