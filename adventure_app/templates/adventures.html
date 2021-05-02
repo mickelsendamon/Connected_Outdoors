@@ -76,8 +76,10 @@
                     <li><i class="fas fa-road"></i><label class="label">All Distances: </label>
                         <select name="distance" class="dropdown-content">
                             <option disabled selected>Select a Distance</option>
+
                             {% for distance in all_adventures %}
                             <option name="distances" value="{{distance.distance}}">{{distance.distance}}</option>
+
                             {% endfor %}
                         </select>
                     </li>
@@ -87,7 +89,7 @@
                             <option disabled selected>Select an Activity</option>
                             {% for activity in all_activities %}
                             <option name="activity_names" value="{{activity.name}}">{{activity.image}}
-                                {{activity.name}}/option>
+                                {{activity.name}}</option>
                                 {% endfor %}
                         </select>
                     </li>
@@ -127,12 +129,13 @@
                 </div>
                 <div class="container-fluid upcoming_adventures_listed">
                     <div class="row">
+                        {% for adventure in all_adventures.all%}
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}"> Title of
-                                        Adventure</a></div>
+                                <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}"> {{adventure.location}}
+                            </a></div>
                                 <div class="col-md-6">
-                                    <p>Date/Time</p>
+                                    <p>{{adventure.adventure_start}}</p>
                                 </div>
                             </div>
                         </div>
@@ -141,18 +144,18 @@
                                 <div class="row">
                                     <div class="col-md-5">
                                         <h5>Type: </h5>
-                                        <h6>Placeholder</h6>
+                                        <h6>{{adventure.activity.name}}</h6>
                                         <h5>Region: </h5>
-                                        <h6>Placeholder</h6>
+                                        <h6>{{adventure.region}}</h6>
                                         <h5>Distance: </h5>
-                                        <h6>Placeholder</h6>
+                                        <h6>{{adventure.distance}}</h6>
                                         <h5>Skill level: </h5>
-                                        <h6>Placeholder</h6>
+                                        <h6>{{adventure.skill_level}}</h6>
                                     </div>
                                     <div class="col-md-5">
                                         <h5>Suggested Equipment</H5>
                                         <ul>
-                                            <li>Placeholder</li>
+                                            <li>{{adventure.suggested_equipment.name}}</li>
                                         </ul>
                                     </div>
                                     <div class="col-md-2">
@@ -164,8 +167,9 @@
                         <div class="row">
                             <div class="col-md-12" id="description">
                                 <h5>Description: </h5>
-                                <h6> Placeholder</h6>
+                                <h6> {{adventure.description}}</h6>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

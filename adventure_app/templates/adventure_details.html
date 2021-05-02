@@ -55,52 +55,51 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <h3>Activity Type</h3>
+                    <h3>{{current_adventure.activity.name}}</h3>
                 </div>
                 <div class="col-md-6">
                     <form action="/leave_adventure" method="POST">
-                    {% csrf_token}
-                    <button type="submit">Cancel/Leave Adventure</button>
+                        <button type="submit">Cancel/Leave Adventure</button>
                     </form>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <h5>Date: </h5>
-                    <p>Placeholder date</p>
-                    <h5>Meeting Time: </h5>
-                    <p>Placeholder time</p>
+                    <p>{{current_adventure.adventure_start}}</p>
                 </div>
                 <div class="col-md-6" id="host_email">
                     <h5>Host Email: </h5>
-                    <p>placeholder@email.com</p>
+                    <p>{{current_adventure.organizer.email}}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <h5><i class="bi bi-signpost-split"></i> Region: </h5>
-                    <p>Placeholder region</p>
+                    <p>{{current_adventure.region}}</p>
                     <h5>Location: </h5>
-                    <p>Placeholder location</p>
+                    <p>{{current_adventure.location}}</p>
                     <h5><i class="fas fa-road"></i> Distance: </h5>
-                    <p>Placeholder distance</p>
+                    <p>{{current_adventure.distance}}</p>
 
                 </div>
                 <div class="col-md-6">
                     <h5>Description:</h5>
-                    <textarea>dfjkdfhkkd</textarea>
+                    <textarea>{{current_adventure.description}}</textarea>
                     <h5>Skill Level: </h5>
-                    <p>Placeholder skill level</p>
+                    <p>{{current_adventure.skill_level}}</p>
                 </div>
+                
             </div>
             <div class="container" style="border: 2px solid lightgreen">
                 <h3>Participants</h3>
+                {% for participants in current_adventure.participated_adventures.all %}
                 <table class="table table-striped table-bordered table-hover table-responsive-sm">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">{{participated_adventures.first_name}}</th>
+                            <th scope="col">{{participants.last_name}}</th>
+                            <th scope="col">{{participants.email}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,6 +109,7 @@
                             <td scope="row">Smith</td>
                         </tr>
                     </tbody>
+                    {% endfor %}
                 </table>
             </div>
         </div>
