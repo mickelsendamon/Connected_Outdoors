@@ -1,18 +1,24 @@
 /* left side filtering */
-.search{
+/* .search{
     width:  25%;
     display:  inline-block;
     vertical-align: top;
     border:  black 2px solid;
     margin:  0 50px 0 50px;
-}
+} */
 
     /* header */
 .title{
     text-align: center;
-    margin-top:  110px;
 }
-.link{
+
+#my_adv_header{
+    padding-left: 31%;
+}
+#new_adv_button{
+    margin-left: 42%;
+}
+/* .link{
     margin: 10px 0px 20px 70%;
     display:  block;
     height: 30px;
@@ -22,30 +28,30 @@
     color:  beige;
     border:  black 2px solid;
     background-color:  green;
-}
-.link:hover{
+} */
+/* .link:hover{
     color: yellow;
-}
+} */
 
 
 /* right side */
-.right{
+/* .right{
     width:  60%;
     display:  inline-block;
-}
-.myAdventures{
+} */
+/* .myAdventures{
     width:  100%;
     display:  inline-block;
     vertical-align: top;
     border:  black 2px solid;
     min-height:  310px; 
     margin-bottom:  30px;   
-}
+} */
 
 /* top of detail container */
-.heading{
+/* .heading{
     height:  70px;
-}
+} */
 .icon{
     margin: 5px 10px 10px 5px;
     display:  inline-block;
@@ -53,13 +59,9 @@
     height:  40px;
     width:  40px;
 }
-.activityTitle{
-    font-size:  22px;
-    display: inline-block;
-    padding-top:  30px;
-    height:  40px;
-    vertical-align:  top;
-}
+/* .activityTitle{
+    text-decoration: none;
+} */
 .datetime{
     display:  inline-block;
     margin-left:  40%;
@@ -78,14 +80,14 @@
     height:  300px;
     vertical-align:  top;
 }
-.equip{
+/* .equip{
     display:  inline-block;
     width:  38%;
     height:  300px;
     vertical-align:  top;
-}
+} */
 
-.detail1{
+/* .detail1{
     margin: 0;
 }
 .detail2{
@@ -93,7 +95,7 @@
 }
 .detail3, .detail4{
     margin:  0 0 20px 20px;
-}
+} */
 
 
 /* buttons */
@@ -104,30 +106,33 @@
     margin-left:20px;
     font-size:  18px;
 }
-.cancelButton{
-    width:  100px;
-    height:  30px;
-    margin-top:  10px;
-    margin-left: 20px;
-}
+
 .cancelButtonInput{
-    width:  100px;
-    height:  30px;
-    border:  1px solid black;
-    font-size:  18px;
+    border-radius: 0.5em; 
+    box-shadow: 2px 3px black;
+    padding: 0.9% 2.2%;
+    text-align: center;
+    background-color: lightgrey;;
+    margin-top: 1%;
+    margin-bottom: 2.2%;
 }
 .editButton{
-    width:  100px;
-    height:  30px;
-    margin-top:  230px;
-    margin-left: 20px;
-    font-size:  18px;
+    border-radius: 0.5em; 
+    box-shadow: 2px 3px black;
+    padding: 0.7% 4%;
+    text-align: center;
+    background-color: #f6c453;
+    margin-top: 1%;
+    margin-bottom: 2%;
 }
-.buttons{
+.editButton:hover, .cancelButtonInput:hover, #new_adv_button:hover{
+    color: white;
+} 
+/* .buttons{
     width: 20%;
     display:  inline-block;
     margin-left: 10px;
-}
+} */
 
 /* Sidebar - entire left menu */
 #wrap_sidebar{
@@ -184,13 +189,20 @@
     margin-left: 77px;
     margin-top: 10px;
 }
-.container-fluid{
+/* .container-fluid{
     border: 2px solid black;
-}
+} */
 
 .container-fluid .my_adventures_listed{
     border: 2px solid #DCD6CB;
-    -webkit-box-shadow: 0 8px 6px -6px black;
-    -moz-box-shadow: 0 8px 6px -6px black;
-    box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow:    3px 3px 5px 6px #DCD6CB;
+    -webkit-box-shadow: 3px 3px 5px 6px #DCD6CB;
+    box-shadow:3px 3px 5px 6px #DCD6CB;
+    margin-bottom: 6%;
+
 }
+.title{
+    margin-bottom: 8%;
+    margin-top: 5%;
+}
+

@@ -78,9 +78,14 @@
     margin:  0 5px;
 }
 .submit_button{
-    width: 100px;
-    height:  30px;
-    margin: 30px 42%;
+    border-radius: 0.5em; 
+    box-shadow: 2px 3px black;
+    padding: 0.7% 2%;
+    text-align: center;
+    background-color: #f6c453;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    margin-left: 45.5%;
 }
 
 #back_button{

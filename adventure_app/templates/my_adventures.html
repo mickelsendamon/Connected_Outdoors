@@ -100,66 +100,75 @@
         <!-- Main Content -->
         <div id="wrap_main">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h1 class="title">{{current_user.first_name}}'s Adventures</h1>
-                    </div>
-                    <div class="col-md-6">
-                        <form action="/new_adventure" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" value="New Adventure">Post a New Adventure</button>
-                        </form>                    
-                </div>
-                {% for adventure in my_adventures %}
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="icon"></p>
-                        <a href="/adventure_detail/{{adventure.id}}"
-                            class="activityTitle">{{adventure.activity.name}}</a>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="datetime">{{adventure.adventure_start}}</p>
-                    </div>
-                    <div class="container-fluid my_adventures_listed">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p class="detail1">{{adventure.region}}</p>
-                                <p class="detail2">{{adventure.location}}</p>
-                                <p class="detail3">Distance: {{adventure.distance}}</p>
-                                <p class="detail4">Skill Level: {{adventure.skill_level}}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Suggested Equipment</p>
-                                <ul>
-                                    {% for equipment in adventure.suggested_equipment.all %}
-                                    <li>{{equipment.name}}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    {% if adventure.organizer.id != request.session.user_id %}
-                                    <form action="/leave_adventure/{{adventure.id}}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="submit" class="leaveButton" value="Leave">
-                                    </form>
-                                    {% else %}
-                                    <form action="/edit_adventure/{{adventure.id}}" method="POST">
-                                        {% csrf_token %}
-                                        <input type="submit" class="editButton" value="Edit">
-                                    </form>
-                                    <form action="/cancel_adventure/{{adventure.id}}" class="cancelButton"
-                                        method="POST">
-                                        {% csrf_token %}
-                                        <input type="submit" class="cancelButtonInput" value="Cancel">
-                                    </form>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            {% endfor %}
+                <div id="my_adv_header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1 class="title">{{current_user.first_name}}'s Adventures</h1>
+                        </div>
+                        <div class="col-md-6">
+                            <form action="/new_adventure" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" value="New Adventure" id="new_adv_button">Post a New
+                                    Adventure</button>
+                            </form>
                         </div>
                     </div>
                 </div>
+                {% for adventure in my_adventures %}
+
+                <div class="container-fluid all_my_adventures">
+
+                    <div class="container-fluid my_adventures_listed">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="icon"></p>
+                                <a href="/adventure_detail/{{adventure.id}}"
+                                    class="activityTitle"><h3>{{adventure.activity.name}}</h3></a>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Start Date & Time: </h5><h6 class="datetime">{{adventure.adventure_start}}</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Region: </h5><h6 class="detail1">{{adventure.region}}</h6>
+                                    <h5>Location: </h5><h6 class="detail2">{{adventure.location}}</h6>
+                                    <h5>Distance: </h5><h6 class="detail3">{{adventure.distance}}</h6>
+                                    <h5>Skill Level: </h5><h6 class="detail4"> {{adventure.skill_level}}</h6>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Suggested Equipment: </h5>
+                                    <ul>
+                                        {% for equipment in adventure.suggested_equipment.all %}
+                                        <li>{{equipment.name}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {% if adventure.organizer.id != request.session.user_id %}
+                                        <form action="/leave_adventure/{{adventure.id}}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="submit" class="leaveButton" value="Leave">
+                                        </form>
+                                        {% else %}
+                                        <form action="/edit_adventure/{{adventure.id}}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="submit" class="editButton" value="Edit">
+                                        </form>
+                                        <form action="/cancel_adventure/{{adventure.id}}" class="cancelButton"
+                                            method="POST">
+                                            {% csrf_token %}
+                                            <input type="submit" class="cancelButtonInput" value="Cancel">
+                                        </form>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
