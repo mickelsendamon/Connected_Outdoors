@@ -49,8 +49,25 @@ class AdventureManager(models.Manager):
         errors = {}
         if len(post_data['location']) < 1:
             errors["location"] = "The location field can't be empty!"
+        if 'activity_id' in post_data:
+            if Activity.objects.get(id=post_data['activity_id']) not in Activity.objects.all():
+                errors["activity_id"] = "Please pick a valid activity"
+        else:
+            errors["activity_id"] = "Please pick an activity"
+        if 'region' in post_data:
+            if post_data['region'] not in ['southeast', 'southwest', 'northeast', 'northwest']:
+                errors["region"] = "Please pick a valid region"
+        else:
+            errors["region"] = "Please pick a region"
         if len(post_data['distance']) < 1:
             errors["distance"] = "The distance field can't be empty!"
+        if 'skill_level' in post_data:
+            if post_data['skill_level'] not in ['beginner', 'intermediate', 'advanced', 'master']:
+                errors["skill_level"] = "Please pick a valid skill level"
+        else:
+            errors["skill_level"] = "Please pick a skill level"
+        if len(post_data['adventure_start']) < 1:
+            errors["adventure_start"] = "You need to pick a starting time!"
         if len(post_data['duration']) < 1:
             errors["duration"] = "The duration field can't be empty!"
         if len(post_data['meeting_location']) < 1:
