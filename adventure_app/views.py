@@ -157,13 +157,13 @@ def create_adventure(request):  # todo add equipment
                     description=description, activity=activity, organizer=User.objects.get(
                         id=request.session['user_id'],)
                 )
-                adventure.participants.add(User.objects.get(id=request.session['user_id']))
+                adventure.participants.add(
+                    User.objects.get(id=request.session['user_id']))
                 for equipment in sg_equipment:
                     equipment_object = SuggestedEquipment.objects.get(
                         id=equipment)
                     adventure.suggested_equipment.add(equipment_object)
-                    
-                
+
                 return redirect(f'/adventure_detail/{adventure.id}')
         return redirect('/')
     return redirect('/')
@@ -253,7 +253,8 @@ def filter_adventures(request):
                             region=region_filter, skill_level=difficulty_filter, activity=activity_filter
                         ).orderby()
                     else:
-                        print('region and difficulty')
+                        print('region and difficulty',
+                              region_filter, difficulty_filter)
                         adventures = Adventure.objects.filter(
                             region=region_filter, skill_level=difficulty_filter
                         )
