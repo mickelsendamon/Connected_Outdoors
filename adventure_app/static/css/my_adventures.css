@@ -18,13 +18,14 @@
 }
 
 .datetime{
-    padding-top: 3em;
+    padding-top: 1.5em;
     display:  inline-block;
     padding-left: 3%;
 }
 
 #activityTitle{
     padding-bottom: 1em;
+    padding-top: 1em;
 }
 
 .details{
@@ -130,12 +131,11 @@
 
 .container-fluid .my_adventures_listed{
     padding: 0em 0em 2em 2.75em;
-    border: 2px solid #DCD6CB;
-    -moz-box-shadow:    3px 3px 5px 6px #DCD6CB;
-    -webkit-box-shadow: 3px 3px 5px 6px #DCD6CB;
-    box-shadow:3px 3px 5px 6px #DCD6CB;
-    margin-bottom: 6%;
-
+    border-bottom:   #e6e4e0 5px solid;
+    border-top:  #e6e4e0 5px solid;
+    margin-bottom:  4%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 95%;
 }
 .title{
     margin-bottom: 8%;

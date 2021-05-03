@@ -118,7 +118,7 @@
             <p class="subtitle_Rt">Description:</p>
             <textarea class="description" name="description">{{current_adventure.description}}</textarea>
             <p class="subtitle_Rt">Suggested Equipment:</p>
-            <p>Remove</p>
+            <p>Add to</p>
             <div class="scrollbox">
 
                 {% for equipment in all_sg_equipment.all %}
@@ -126,7 +126,7 @@
                 <label for="{{SuggestedEquipment.name}}">{{equipment.name}}</label><br>
                 {% endfor %}
             </div>
-            <p>Add to</p>
+            <p>Remove</p>
             <div class="scrollbox">
 
                 {% for equipment in all_sg_equipment.all %}
