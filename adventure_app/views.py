@@ -89,11 +89,7 @@ def my_adventures(request):  # todo done
     if 'user_id' not in request.session:
         return redirect('/')
     user = User.objects.get(id=request.session['user_id'])
-    my_advs = []
-    for adv in user.organized_adventures.all().order_by('adventure_start'):
-        my_advs.append(adv)
-    for adv in user.participated_adventures.all().order_by('adventure_start'):
-        my_advs.append(adv)
+    my_advs = user.participated_adventures.all().order_by('adventure_start')
     context = {
         'current_user': user,
         'my_adventures': my_advs,
@@ -161,6 +157,7 @@ def create_adventure(request):  # todo add equipment
                     description=description, activity=activity, organizer=User.objects.get(
                         id=request.session['user_id'],)
                 )
+                adventure.participants.add(User.objects.get(id=request.session['user_id']))
                 for equipment in sg_equipment:
                     equipment_object = SuggestedEquipment.objects.get(
                         id=equipment)
