@@ -309,8 +309,8 @@ def filter_my_adventures(request):
                 difficulty_filter = request.POST['difficulty']
             else:
                 difficulty_filter = None
-            if 'activity' in request.POST:
-                activity_filter = request.POST['activity']
+            if 'activity_id' in request.POST:
+                activity_filter = request.POST['activity_id']
             else:
                 activity_filter = None
             if region_filter is not None:
