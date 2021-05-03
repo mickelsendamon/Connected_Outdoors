@@ -108,10 +108,12 @@
                         </form>
                     </div>
                 </div>
-                <div class="container-fluid upcoming_adventures_listed">
-                    <div class="row">
+                
+                <div class="container-fluid upcoming_adventures_listed">                    
+                    <div class="row">                        
                         {% for adventure in all_adventures.all%}
-                        <div class="col-md-12">
+                        <section class = "separate">
+                        <div class="col-md-12">                            
                             <div class="row">
                                 <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}"><h3>
                                     {{adventure.activity.name}}</h3>
@@ -152,12 +154,15 @@
                         <div class="row">
                             <div class="col-md-12" id="description">
                                 <h5>Description: </h5>
-                                <h6> {{adventure.description}}</h6>
+                                <h6> {{adventure.description}}</h6>                            
                             </div>
+                            <div id = "divide"></div>
+                            </section>                            
                             {% endfor %}
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
