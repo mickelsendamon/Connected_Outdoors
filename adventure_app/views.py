@@ -253,7 +253,9 @@ def filter_adventures(request):
                             region=region_filter, skill_level=difficulty_filter, activity__name=activity_filter
                         )
                     else:
+
                         # region & difficulty
+
                         adventures = Adventure.objects.filter(
                             region=region_filter, skill_level=difficulty_filter
                         )
