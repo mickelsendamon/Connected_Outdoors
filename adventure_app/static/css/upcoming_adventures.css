@@ -5,4 +5,18 @@
 .post_adventure{
     justify-content: left;
 }
+h1{
+    margin:  50px 0;
+}
+.separate{
+    border-bottom:   #e6e4e0 5px solid;
+    border-top:  #e6e4e0 5px solid;
+    margin-bottom:  60px;
+    padding:  30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#page_content_wrapper{
+    background-color:white;
+}   
+
 
