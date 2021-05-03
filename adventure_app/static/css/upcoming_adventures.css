@@ -12,11 +12,51 @@ h1{
     border-bottom:   #e6e4e0 5px solid;
     border-top:  #e6e4e0 5px solid;
     margin-bottom:  60px;
-    padding:  30px;
+    padding: 0em 0em 2em 2.75em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #page_content_wrapper{
     background-color:white;
 }   
 
+#page_content_header{
+    padding-left: 20%;
+}
 
+.details{
+    display: inline-block;
+    padding-left: 1em;
+    padding-bottom: 1em;
+}
+
+.descriptors{
+    display: inline-block;
+}
+
+#description_details{
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+#adv_title{
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+.datetime{
+    padding-top: 1.5em;
+    display:  inline-block;
+    padding-left: 3%;
+}
+
+#start_dt{
+    display: inline-block;
+}
+
+#button_new_adv:hover{
+    color: white;
+}
+
+#desc_verbage{
+    margin-left: 2em;
+}
