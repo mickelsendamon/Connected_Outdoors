@@ -72,16 +72,18 @@
             <form action="/edit_adventure/{{current_adventure.id}}/update" method="post">
                 {% csrf_token %}
 
+                <input type="hidden" name="activity_id" value={{current_adventure.activity.id}}>
+
                 <label class="label">Location:</label>
                 <input type="text" name="location" value="{{current_adventure.location}}"><br><br>
 
                 <label class="label">Region:</label>
                 <select name="region" class="dropdown-content-edit">
                     <option disabled selected>Select a Region</option>
-                    <option value="{{southeast}}">Southeast</option>
-                    <option value="{{southwest}}">Southwest</option>
-                    <option value="{{northeast}}">Northeast</option>
-                    <option value="{{northwest}}">Northwest</option>
+                    <option value="southeast">Southeast</option>
+                    <option value="southwest">Southwest</option>
+                    <option value="northeast">Northeast</option>
+                    <option value="northwest">Northwest</option>
                 </select><br><br>
 
 
@@ -91,10 +93,10 @@
                 <label class="label">Skill Level:</label>
                 <select name="skill_level" class="dropdown-content-edit">
                     <option disabled selected>Select a skill level</option>
-                    <option value="{{beginner}}">Beginner</option>
-                    <option value="{{intermediate}}">Intermediate</option>
-                    <option value="{{advanced}}">Advanced</option>
-                    <option value="{{master}}">Master</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                    <option value="master">Master</option>
                 </select><br><br>
 
 
@@ -116,7 +118,17 @@
             <p class="subtitle_Rt">Description:</p>
             <textarea class="description" name="description">{{current_adventure.description}}</textarea>
             <p class="subtitle_Rt">Suggested Equipment:</p>
+            <p>Remove</p>
             <div class="scrollbox">
+
+                {% for equipment in all_sg_equipment.all %}
+                <input type="checkbox" value="{{equipment.id}}" name="suggested_equipment">
+                <label for="{{SuggestedEquipment.name}}">{{equipment.name}}</label><br>
+                {% endfor %}
+            </div>
+            <p>Add to</p>
+            <div class="scrollbox">
+
                 {% for equipment in all_sg_equipment.all %}
                 <input type="checkbox" value="{{equipment.id}}" name="suggested_equipment">
                 <label for="{{SuggestedEquipment.name}}">{{equipment.name}}</label><br>

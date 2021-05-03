@@ -3,8 +3,7 @@
     margin: 0;
     padding: 0;
 }
-
-        
+    
 .wrapper{
     width:   auto;
     margin:  31px 0 60px 3%;
@@ -12,7 +11,7 @@
     border: 2px solid #DCD6CB;
     -moz-box-shadow:    3px 3px 5px 6px #DCD6CB;
     -webkit-box-shadow: 3px 3px 5px 6px #DCD6CB;
-    box-shadow:         3px 3px 5px 6px #DCD6CB;
+    box-shadow:3px 3px 5px 6px #DCD6CB;
 }
 .pageTitle{
     text-align: center;
@@ -94,9 +93,18 @@
     margin:  0 5px;
 }
 .submit_button{
-    width: 100px;
-    height:  30px;
-    margin: 30px 42%;
+    border-radius: 0.5em; 
+    box-shadow: 2px 3px black;
+    padding: 0.7% 2%;
+    text-align: center;
+    background-color: #f6c453;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    margin-left: 45.5%;
+}
+
+.submit_button:hover{
+    color: white;
 }
 
 #back_button{

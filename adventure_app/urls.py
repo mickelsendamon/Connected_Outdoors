@@ -20,4 +20,6 @@ urlpatterns = [
     path('edit_adventure/<int:adv_id>', views.edit_adventure_page),
     path('edit_adventure/<int:adv_id>/update', views.edit_adventure),
     path('add_sg_equpiment', views.add_sg_equipment),
+    path('filter_adventures', views.filter_adventures),
+    path('filter_my_adventure', views.filter_my_adventures),
 ]
