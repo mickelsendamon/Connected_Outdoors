@@ -103,7 +103,7 @@
                             <h1 id="upcoming_adventures">Upcoming Adventures</h1>
                         </div>
                         <div class="col-md-4">
-                            <form action="/new_adventure" method="POST">
+                            <form action="/new_adventure" method="POST" id="add_button">
                                 {% csrf_token %}
                                 <button type="submit" value="New Adventure" id="button_new_adv">Post a New Adventure</button>
                             </form>
