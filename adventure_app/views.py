@@ -198,10 +198,12 @@ def add_sg_equipment(request):
 
 def edit_adventure_page(request, adv_id):
     if 'user_id' in request.session:
+        adventure = Adventure.objects.get(id=adv_id)
         context = {
             'current_user': User.objects.get(id=request.session['user_id']),
             'current_adventure': Adventure.objects.get(id=adv_id),
-            'all_sg_equipment': SuggestedEquipment.objects.all(),
+            'all_equipment_out': SuggestedEquipment.objects.exclude(suggested_for=adventure),
+            'all_equipment_in': SuggestedEquipment.objects.filter(suggested_for=adventure)
         }
         return render(request, "edit_adventure.html", context)
     return redirect('/')
@@ -216,6 +218,9 @@ def edit_adventure(request, adv_id):
                     messages.error(request, value)
                 return redirect(f'/edit_adventure/{adv_id}')
             else:
+                advenuter = Adventure.objects.get(id=adv_id)
+                equipment_add = request.POST.getlist('equipment_add')
+                equipment_remove = request.POST.getlist('equipment_remove')
                 adventure = Adventure.objects.get(id=adv_id)
                 adventure.location = request.POST['location']
                 adventure.region = request.POST['region']
@@ -225,6 +230,15 @@ def edit_adventure(request, adv_id):
                 adventure.duration = request.POST['duration']
                 adventure.meeting_location = request.POST['meeting_location']
                 adventure.description = request.POST['description']
+                for equipment in equipment_add:
+                    equipment_object_add = SuggestedEquipment.objects.get(
+                        id=equipment)
+                    adventure.suggested_equipment.add(equipment_object_add)
+                for equipment in equipment_remove:
+                    equipment_object_remove = SuggestedEquipment.objects.get(
+                        id=equipment)
+                    adventure.suggested_equipment.remove(
+                        equipment_object_remove)
                 adventure.save()
         return redirect(f'/edit_adventure/{adv_id}')
     return redirect('/')
