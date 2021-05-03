@@ -121,19 +121,19 @@
                     <div class="container-fluid my_adventures_listed">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="icon"></p>
+                                <!-- <p class="icon"></p> -->
                                 <a href="/adventure_detail/{{adventure.id}}"
-                                    class="activityTitle"><h3>{{adventure.activity.name}}</h3></a>
+                                    ><h3 id="activityTitle">{{adventure.activity.name}}</h3></a>
                             </div>
                             <div class="col-md-6">
-                                <h5>Start Date & Time: </h5><h6 class="datetime">{{adventure.adventure_start}}</h6>
+                                <h5 id="start_date_time">Start Date & Time: </h5><h6 class="datetime">{{adventure.adventure_start}}</h6>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h5>Region: </h5><h6 class="detail1">{{adventure.region}}</h6>
-                                    <h5>Location: </h5><h6 class="detail2">{{adventure.location}}</h6>
-                                    <h5>Distance: </h5><h6 class="detail3">{{adventure.distance}}</h6>
-                                    <h5>Skill Level: </h5><h6 class="detail4"> {{adventure.skill_level}}</h6>
+                                    <h5 class="descriptors">Region: </h5><h6 class="details">{{adventure.region}}</h6><br>
+                                    <h5 class="descriptors">Location: </h5><h6 class="details">{{adventure.location}}</h6><br>
+                                    <h5 class="descriptors">Distance: </h5><h6 class="details">{{adventure.distance}}</h6><br>
+                                    <h5 class="descriptors">Skill Level: </h5><h6 class="details"> {{adventure.skill_level}}</h6><br>
                                 </div>
                                 <div class="col-md-6">
                                     <h5>Suggested Equipment: </h5>
@@ -151,12 +151,12 @@
                                             <input type="submit" class="leaveButton" value="Leave">
                                         </form>
                                         {% else %}
-                                        <form action="/edit_adventure/{{adventure.id}}" method="POST">
+                                        <form action="/edit_adventure/{{adventure.id}}" method="POST" id="edit_button_form">
                                             {% csrf_token %}
                                             <input type="submit" class="editButton" value="Edit">
                                         </form>
-                                        <form action="/cancel_adventure/{{adventure.id}}" class="cancelButton"
-                                            method="POST">
+                                        <form action="/cancel_adventure/{{adventure.id}}" id="cancel_button_form"
+                                            method="POST"  style="display: inline-block;">
                                             {% csrf_token %}
                                             <input type="submit" class="cancelButtonInput" value="Cancel">
                                         </form>
