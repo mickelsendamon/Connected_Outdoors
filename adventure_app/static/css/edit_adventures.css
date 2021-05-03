@@ -20,7 +20,7 @@
 .leftside{
     width:  44%;
     display:  inline-block;
-    height:  600px;
+    height:  800px;
     vertical-align: top;
     text-align:  left;
     margin-left:  80px    
@@ -42,7 +42,7 @@
 }
 .rightside{
     width:  47%;
-    height:  600px;
+    height:  800px;
     display:  inline-block;
     vertical-align: top;
 }
