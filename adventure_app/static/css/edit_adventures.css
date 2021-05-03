@@ -20,7 +20,7 @@
 .leftside{
     width:  44%;
     display:  inline-block;
-    height:  600px;
+    height:  800px;
     vertical-align: top;
     text-align:  left;
     margin-left:  80px    
@@ -30,6 +30,9 @@
     font-size:  18px;
     margin-left: 0;
     margin-bottom: 15px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px black solid; 
 }
 .label{
     margin: 10px;
@@ -39,7 +42,7 @@
 }
 .rightside{
     width:  47%;
-    height:  600px;
+    height:  800px;
     display:  inline-block;
     vertical-align: top;
 }
@@ -53,11 +56,17 @@
     width:  225px; 
     height:  25px;
     font-size: 18px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px black solid; 
 }
 .description{
     width:  310px;
     height:  200px;
     margin:  10px 20% 75px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px black solid; 
 }
 .equip{
     width:  20px;
@@ -73,6 +82,9 @@
     border: thin #000 solid;
     padding: 5px;
     margin: 10px 20%;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px black solid; 
 }
 .scrollbox label{
     margin:  0 15px;
