@@ -1,13 +1,15 @@
 #upcoming_adventures{
     text-align: center;
+    padding-bottom: 1em;
+    padding-top: 0.75em;
 }
 
 .post_adventure{
     justify-content: left;
 }
-h1{
+/* h1{
     margin:  50px 0;
-}
+} */
 .separate{
     border-bottom:   #e6e4e0 5px solid;
     border-top:  #e6e4e0 5px solid;
@@ -57,6 +59,17 @@ h1{
     color: white;
 }
 
+#add_button{
+    padding-bottom: 1em;
+    padding-top: 0.75em;
+}
+
 #desc_verbage{
     margin-left: 2em;
+}
+
+#adv_details_title{
+    padding-bottom: 1em;
+    padding-top: 1em;
+    text-align: center;
 }
