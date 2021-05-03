@@ -165,8 +165,8 @@ def create_adventure(request):  # todo add equipment
                     equipment_object = SuggestedEquipment.objects.get(
                         id=equipment)
                     adventure.suggested_equipment.add(equipment_object)
-                    print(equipment_object)
-                print(sg_equipment)
+                    
+                
                 return redirect(f'/adventure_detail/{adventure.id}')
         return redirect('/')
     return redirect('/')
@@ -213,16 +213,21 @@ def edit_adventure_page(request, adv_id):
 def edit_adventure(request, adv_id):
     if 'user_id' in request.session:
         if request.method == "POST":
-            adventure = Adventure.objects.get(id=adv_id)
-            adventure.location = request.POST['location']
-            adventure.region = request.POST['region']
-            adventure.distance = request.POST['distance']
-            adventure.skill_level = request.POST['skill_level']
-            adventure.adventure_start = request.POST['adventure_start']
-            adventure.duration = request.POST['duration']
-            adventure.meeting_location = request.POST['meeting_location']
-            adventure.description = request.POST['description']
-            adventure.save()
+            errors = Adventure.objects.adventure_validation(request.POST)
+            if len(errors) > 0:
+                for key, value in errors.items():
+                    messages.error(request, value)
+                return redirect(f'/edit_adventure/{adv_id}')
+            else:
+                adventure = Adventure.objects.get(id=adv_id)
+                adventure.location = request.POST['location']
+                adventure.region = request.POST['region']
+                adventure.distance = request.POST['distance']
+                adventure.skill_level = request.POST['skill_level']
+                adventure.adventure_start = request.POST['adventure_start']
+                adventure.duration = request.POST['duration']
+                adventure.meeting_location = request.POST['meeting_location']
+                adventure.description = request.POST['description']
+                adventure.save()
         return redirect(f'/edit_adventure/{adv_id}')
     return redirect('/')
-
