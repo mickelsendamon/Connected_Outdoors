@@ -19,4 +19,10 @@ h1{
     background-color:white;
 }   
 
+.adLink{
+    color:  #105636;
+}
+.adLink:hover{
+    color:#198754;
+}
 

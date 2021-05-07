@@ -11,6 +11,13 @@
 .title{
     text-align: center;
 }
+.activityTitle{
+    color:  #105636;
+}
+.activityTitle:hover{
+    color:#198754;
+}
+
 
 #my_adv_header{
     padding-left: 31%;
