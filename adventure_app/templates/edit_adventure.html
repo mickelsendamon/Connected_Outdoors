@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">        
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
 
 </head>
@@ -118,19 +118,19 @@
             <p class="subtitle_Rt">Description:</p>
             <textarea class="description" name="description">{{current_adventure.description}}</textarea>
             <p class="subtitle_Rt">Suggested Equipment:</p>
-            <p>Remove</p>
+            <p>Add</p>
             <div class="scrollbox">
 
-                {% for equipment in all_sg_equipment.all %}
-                <input type="checkbox" value="{{equipment.id}}" name="suggested_equipment">
+                {% for equipment in all_equipment_out.all %}
+                <input type="checkbox" value="{{equipment.id}}" name="equipment_add">
                 <label for="{{SuggestedEquipment.name}}">{{equipment.name}}</label><br>
                 {% endfor %}
             </div>
-            <p>Add to</p>
+            <p>Remove</p>
             <div class="scrollbox">
 
-                {% for equipment in all_sg_equipment.all %}
-                <input type="checkbox" value="{{equipment.id}}" name="suggested_equipment">
+                {% for equipment in all_equipment_in.all %}
+                <input type="checkbox" value="{{equipment.id}}" name="equipment_remove">
                 <label for="{{SuggestedEquipment.name}}">{{equipment.name}}</label><br>
                 {% endfor %}
             </div>

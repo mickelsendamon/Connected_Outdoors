@@ -97,74 +97,89 @@
         <!-- PAGE CONTENT -->
         <div id="page_content_wrapper">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h1 id="upcoming_adventures">Upcoming Adventures</h1>
-                    </div>
-                    <div class="col-md-4">
-                        <form action="/new_adventure" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" value="New Adventure">Post a New Adventure</button>
-                        </form>
+                <div id="page_content_header">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1 id="upcoming_adventures">Upcoming Adventures</h1>
+                        </div>
+                        <div class="col-md-4">
+                            <form action="/new_adventure" method="POST" id="add_button">
+                                {% csrf_token %}
+                                <button type="submit" value="New Adventure" id="button_new_adv">Post a New
+                                    Adventure</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="container-fluid upcoming_adventures_listed">                    
-                    <div class="row">                        
-                        {% for adventure in all_adventures.all%}
-                        <section class = "separate">
-                        <div class="col-md-12">                            
-                            <div class="row">
-                                <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}" class = "adLink"><h3> 
-                                    {{adventure.activity.name}}</h3>
-                                    
-                                    </a></div>
-                                <div class="col-md-6">
-                                    <p>{{adventure.adventure_start}}</p>
-                                </div>
-                            </div>
-                        </div>
+
+                <div class="container-fluid upcoming_adventures_listed">
+                    <div class="container-fluid all_upcoming_adventures">
+
                         <div class="row">
-                            <div class="col-md-12">
+                            {% for adventure in all_adventures.all%}
+                            <section class="separate">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6"><a href="/adventure_detail/{{adventure.id}}">
+                                                <h3 id="adv_title">{{adventure.activity.name}}</h3>
+                                            </a></div>
+                                        <div class="col-md-6">
+                                            <h5 id="start_dt">Start Date & Time: </h5>
+                                            <h6 class="datetime">{{adventure.adventure_start}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
-                                    <div class="col-md-5">
-                                        <h5>Location: </h5><h6>{{adventure.location}}</h6>
-                                        
-                                        <h5>Region: </h5><h6>{{adventure.region}}</h6>
-                                        <h5>Meeting Spot: </h5><h6>{{adventure.meeting_location}}</h6>
-                                        <h5>Distance: </h5>
-                                        <h6>{{adventure.distance}}</h6>
-                                        <h5>Skill level: </h5>
-                                        <h6>{{adventure.skill_level}}</h6>
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                {% if current_user not in adventure.participants.all %}
+                                                <form action="/join_adventure/{{adventure.id}}" method="POST">
+                                                    {% csrf_token %}
+                                                    <input type="submit" id="join_button" value="Join">
+                                                </form>
+                                                {% endif %}
+                                                <h5 class="descriptors">Location: </h5>
+                                                <h6 class="details">{{adventure.location}}</h6><br>
+                                                <h5 class="descriptors">Region: </h5>
+                                                <h6 class="details">{{adventure.region}}</h6><br>
+                                                <h5 class="descriptors">Meeting Spot: </h5>
+                                                <h6 class="details">{{adventure.meeting_location}}</h6><br>
+                                                <h5 class="descriptors">Distance: </h5>
+                                                <h6 class="details">{{adventure.distance}}</h6><br>
+                                                <h5 class="descriptors">Skill level: </h5>
+                                                <h6 class="details">{{adventure.skill_level}}</h6><br>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <h5>Suggested Equipment: </H5>
+                                                <ul>
+                                                    {% for equipment in adventure.suggested_equipment.all %}
+                                                    <li>{{equipment.name}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                                <h5 id="description_details">Description: </h5>
+                                                <h6 id="desc_verbage"> {{adventure.description}}</h6>
+
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <h5>Suggested Equipment</H5>
-                                        <ul>
-                                            {% for equipment in adventure.suggested_equipment.all %}
-                                            <li>{{equipment.name}}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                    <!--<div class="col-md-2">
-                                        <a href="/join_adventure/{{adventure.id}}">Join</a>
-                                    </div>-->
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12" id="description">
-                                <h5>Description: </h5>
-                                <h6> {{adventure.description}}</h6>                            
-                            </div>
-                            <div id = "divide"></div>
-                            </section>                            
+                                <!-- <div class="row">
+                                    <div class="col-md-12" id="description">
+                                        <h5 class="descriptors">Description: </h5><h6 class="details"> {{adventure.description}}</h6><br>
+                                        
+                                    </div>
+                                    <div id="divide"></div> -->
+                            </section>
                             {% endfor %}
                         </div>
                     </div>
                 </div>
-                
             </div>
+
         </div>
+    </div>
     </div>
     <script>
         // Menu toggle JS
