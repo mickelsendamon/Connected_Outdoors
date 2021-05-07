@@ -21,10 +21,10 @@
     background-color:white;
 }   
 
-#adv_title{
+.actTitle{
     color:  #105636;
 }
-#adv_title:hover{
+.actTitle:hover{
     color:#198754;
 
 #page_content_header{
