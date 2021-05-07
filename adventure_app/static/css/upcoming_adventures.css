@@ -19,10 +19,10 @@ h1{
     background-color:white;
 }   
 
-.adLink{
+#adv_title{
     color:  #105636;
 }
-.adLink:hover{
+#adv_title:hover{
     color:#198754;
 }
 

@@ -11,10 +11,10 @@
 .title{
     text-align: center;
 }
-.activityTitle{
+#adv_title{
     color:  #105636;
 }
-.activityTitle:hover{
+#adv_title:hover{
     color:#198754;
 }
 
