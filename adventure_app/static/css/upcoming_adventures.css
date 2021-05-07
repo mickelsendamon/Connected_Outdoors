@@ -21,6 +21,12 @@
     background-color:white;
 }   
 
+.adLink{
+    color:  #105636;
+}
+.adLink:hover{
+    color:#198754;
+
 #page_content_header{
     padding-left: 20%;
 }
