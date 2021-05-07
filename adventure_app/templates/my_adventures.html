@@ -59,7 +59,7 @@
         <!-- SIDEBAR -->
         <div id="wrap_sidebar">
             <ul class="sidebar-nav">
-                <form action="#" method="POST">
+                <form action="/filter_my_adventure" method="POST">
                     {% csrf_token %}
                     <li><i class="bi bi-signpost-split"></i>
                         <label class="label" id="region">Region:</label>
@@ -75,10 +75,10 @@
                         <label class="label">Difficulty:</label>
                         <select name="difficulty" class="dropdown-content">
                             <option disabled selected>Select a Difficulty Level</option>
-                            <option value="Beginner">Beginner</option>
-                            <option value="Intermediate">Intermediate</option>
-                            <option value="Advanced">Advanced</option>
-                            <option value="Master">Master</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                            <option value="master">Master</option>
                         </select>
                     </li>
                     <li><i class="fas fa-mountain"></i>
@@ -115,25 +115,29 @@
                     </div>
                 </div>
                 {% for adventure in my_adventures %}
-
                 <div class="container-fluid all_my_adventures">
-
                     <div class="container-fluid my_adventures_listed">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="icon"></p>
-                                <a href="/adventure_detail/{{adventure.id}}"
-                                    id="adv_title"><h3>{{adventure.activity.name}}</h3></a>
+                                <!-- <p class="icon"></p> -->
+                                <a href="/adventure_detail/{{adventure.id}}">
+                                <h3 id="activityTitle">{{adventure.activity.name}}</h3>
+                                </a>
                             </div>
                             <div class="col-md-6">
-                                <h5>Start Date & Time: </h5><h6 class="datetime">{{adventure.adventure_start}}</h6>
+                                <h5 id="start_date_time">Start Date & Time: </h5>
+                                <h6 class="datetime">{{adventure.adventure_start}}</h6>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h5>Region: </h5><h6 class="detail1">{{adventure.region}}</h6>
-                                    <h5>Location: </h5><h6 class="detail2">{{adventure.location}}</h6>
-                                    <h5>Distance: </h5><h6 class="detail3">{{adventure.distance}}</h6>
-                                    <h5>Skill Level: </h5><h6 class="detail4"> {{adventure.skill_level}}</h6>
+                                    <h5 class="descriptors">Region: </h5>
+                                    <h6 class="details">{{adventure.region}}</h6><br>
+                                    <h5 class="descriptors">Location: </h5>
+                                    <h6 class="details">{{adventure.location}}</h6><br>
+                                    <h5 class="descriptors">Distance: </h5>
+                                    <h6 class="details">{{adventure.distance}}</h6><br>
+                                    <h5 class="descriptors">Skill Level: </h5>
+                                    <h6 class="details"> {{adventure.skill_level}}</h6><br>
                                 </div>
                                 <div class="col-md-6">
                                     <h5>Suggested Equipment: </h5>
@@ -148,15 +152,16 @@
                                         {% if adventure.organizer.id != request.session.user_id %}
                                         <form action="/leave_adventure/{{adventure.id}}" method="POST">
                                             {% csrf_token %}
-                                            <input type="submit" class="leaveButton" value="Leave">
+                                            <input type="submit" class="cancelButtonInput" value="Leave">
                                         </form>
                                         {% else %}
-                                        <form action="/edit_adventure/{{adventure.id}}" method="POST">
+                                        <form action="/edit_adventure/{{adventure.id}}" method="POST"
+                                            id="edit_button_form">
                                             {% csrf_token %}
                                             <input type="submit" class="editButton" value="Edit">
                                         </form>
-                                        <form action="/cancel_adventure/{{adventure.id}}" class="cancelButton"
-                                            method="POST">
+                                        <form action="/cancel_adventure/{{adventure.id}}" id="cancel_button_form"
+                                            method="POST" style="display: inline-block;">
                                             {% csrf_token %}
                                             <input type="submit" class="cancelButtonInput" value="Cancel">
                                         </form>

@@ -157,13 +157,13 @@ def create_adventure(request):  # todo add equipment
                     description=description, activity=activity, organizer=User.objects.get(
                         id=request.session['user_id'],)
                 )
-                adventure.participants.add(User.objects.get(id=request.session['user_id']))
+                adventure.participants.add(
+                    User.objects.get(id=request.session['user_id']))
                 for equipment in sg_equipment:
                     equipment_object = SuggestedEquipment.objects.get(
                         id=equipment)
                     adventure.suggested_equipment.add(equipment_object)
-                    
-                
+
                 return redirect(f'/adventure_detail/{adventure.id}')
         return redirect('/')
     return redirect('/')
@@ -198,10 +198,12 @@ def add_sg_equipment(request):
 
 def edit_adventure_page(request, adv_id):
     if 'user_id' in request.session:
+        adventure = Adventure.objects.get(id=adv_id)
         context = {
             'current_user': User.objects.get(id=request.session['user_id']),
             'current_adventure': Adventure.objects.get(id=adv_id),
-            'all_sg_equipment': SuggestedEquipment.objects.all(),
+            'all_equipment_out': SuggestedEquipment.objects.exclude(suggested_for=adventure),
+            'all_equipment_in': SuggestedEquipment.objects.filter(suggested_for=adventure)
         }
         return render(request, "edit_adventure.html", context)
     return redirect('/')
@@ -216,6 +218,9 @@ def edit_adventure(request, adv_id):
                     messages.error(request, value)
                 return redirect(f'/edit_adventure/{adv_id}')
             else:
+                advenuter = Adventure.objects.get(id=adv_id)
+                equipment_add = request.POST.getlist('equipment_add')
+                equipment_remove = request.POST.getlist('equipment_remove')
                 adventure = Adventure.objects.get(id=adv_id)
                 adventure.location = request.POST['location']
                 adventure.region = request.POST['region']
@@ -225,6 +230,15 @@ def edit_adventure(request, adv_id):
                 adventure.duration = request.POST['duration']
                 adventure.meeting_location = request.POST['meeting_location']
                 adventure.description = request.POST['description']
+                for equipment in equipment_add:
+                    equipment_object_add = SuggestedEquipment.objects.get(
+                        id=equipment)
+                    adventure.suggested_equipment.add(equipment_object_add)
+                for equipment in equipment_remove:
+                    equipment_object_remove = SuggestedEquipment.objects.get(
+                        id=equipment)
+                    adventure.suggested_equipment.remove(
+                        equipment_object_remove)
                 adventure.save()
         return redirect(f'/edit_adventure/{adv_id}')
     return redirect('/')
@@ -248,34 +262,43 @@ def filter_adventures(request):
             if region_filter is not None:
                 if difficulty_filter is not None:
                     if activity_filter is not None:
-                        print('all')
+                        # all
                         adventures = Adventure.objects.filter(
-                            region=region_filter, skill_level=difficulty_filter, activity=activity_filter
-                        ).orderby()
+                            region=region_filter, skill_level=difficulty_filter, activity__name=activity_filter
+                        )
                     else:
-                        print('region and difficulty')
+
+                        # region & difficulty
+
                         adventures = Adventure.objects.filter(
                             region=region_filter, skill_level=difficulty_filter
                         )
                 elif activity_filter is not None:
-                    print('region and activity')
+                    # region & activity
                     adventures = Adventure.objects.filter(
-                        region=region_filter, activity=activity_filter
+                        region=region_filter, activity__name=activity_filter
                     )
                 else:
-                    print('just region: ', region_filter)
+                    # region
                     adventures = Adventure.objects.filter(
                         region=region_filter
                     )
             elif difficulty_filter is not None:
                 if activity_filter is not None:
+                    # difficulty & activity
                     adventures = Adventure.objects.filter(
-                        skill_level=difficulty_filter, activity=activity_filter
+                        skill_level=difficulty_filter, activity__name=activity_filter
                     )
                 else:
+                    # difficulty
                     adventures = Adventure.objects.filter(
                         skill_level=difficulty_filter
                     )
+            elif activity_filter is not None:
+                # activity
+                adventures = Adventure.objects.filter(
+                    activity__name=activity_filter
+                )
             else:
                 adventures = Adventure.objects.all()
             context = {
@@ -300,41 +323,48 @@ def filter_my_adventures(request):
                 difficulty_filter = request.POST['difficulty']
             else:
                 difficulty_filter = None
-            if 'activity' in request.POST:
-                activity_filter = request.POST['activity']
+            if 'activity_id' in request.POST:
+                activity_filter = request.POST['activity_id']
             else:
                 activity_filter = None
             if region_filter is not None:
                 if difficulty_filter is not None:
                     if activity_filter is not None:
-                        print('all')
+                        # all
                         adventures = Adventure.objects.filter(
-                            region=region_filter, skill_level=difficulty_filter, activity=activity_filter
+                            region=region_filter, skill_level=difficulty_filter, activity__name=activity_filter
                         ).orderby()
                     else:
-                        print('region and difficulty')
+                        # region & difficulty
                         adventures = Adventure.objects.filter(
                             region=region_filter, skill_level=difficulty_filter
                         )
                 elif activity_filter is not None:
-                    print('region and activity')
+                    # region & activity
                     adventures = Adventure.objects.filter(
-                        region=region_filter, activity=activity_filter
+                        region=region_filter, activity__name=activity_filter
                     )
                 else:
-                    print('just region: ', region_filter)
+                    # region
                     adventures = Adventure.objects.filter(
                         region=region_filter
                     )
             elif difficulty_filter is not None:
                 if activity_filter is not None:
+                    # difficulty & activity
                     adventures = Adventure.objects.filter(
-                        skill_level=difficulty_filter, activity=activity_filter
+                        skill_level=difficulty_filter, activity__name=activity_filter
                     )
                 else:
+                    # difficulty
                     adventures = Adventure.objects.filter(
                         skill_level=difficulty_filter
                     )
+            elif activity_filter is not None:
+                # activity
+                adventures = Adventure.objects.filter(
+                    activity__name=activity_filter
+                )
             else:
                 adventures = Adventure.objects.all()
             context = {
@@ -342,6 +372,6 @@ def filter_my_adventures(request):
                 'my_adventures': adventures,
                 'all_activities': Activity.objects.all(),
             }
-            return render(request, 'adventures.html', context)
+            return render(request, 'my_adventures.html', context)
         return redirect('/')
     return redirect('/adventures')

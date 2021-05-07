@@ -107,11 +107,12 @@ button{
     margin-top: 2%;
 }
 
-#host_email{
-    padding-top: 3%;
-}
 
 .container-fluid .upcoming_adventures_listed{
     background-color: #FFFFFF;
+    width: 90%;
 }
 
+#button_forms{
+    padding-top: 2em;
+}
