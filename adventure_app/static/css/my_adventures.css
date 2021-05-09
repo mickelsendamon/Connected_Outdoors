@@ -2,6 +2,13 @@
     text-align: center;
     padding-top: 0.75em;
 }
+#act_title{
+    color:  #105636;
+}
+#act_title:hover{
+    color:#198754;
+}
+
 
 #my_adv_header{
     padding-left: 31%;
@@ -131,7 +138,7 @@
 }
 
 .container-fluid .my_adventures_listed{
-    padding: 0em 0em 2em 2.75em;
+    padding: 2em 0em 2em 2.75em;
     border-bottom:   #e6e4e0 5px solid;
     border-top:  #e6e4e0 5px solid;
     margin-bottom:  4%;
