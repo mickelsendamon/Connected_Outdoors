@@ -13,6 +13,10 @@
     font-size: 2rem;
     padding-right: 2%;
 }
+#back_to_login{
+    color: black;
+    font-size: 1.75em;
+}
 
 .app_title{
     font-family: 'Zen Dots';
@@ -35,8 +39,8 @@ h3{
 
 .login_input{
     width: 25em;
-    padding-top: 1%;
     margin-left: 12px;
+    padding: 9px 12px;
 }
 
 
@@ -97,6 +101,7 @@ button{
 
 #create_account{
     padding-bottom: 1%;
+    display: inline-block;
 }
 
 #register_header{
