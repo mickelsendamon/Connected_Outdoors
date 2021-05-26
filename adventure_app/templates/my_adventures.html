@@ -125,29 +125,33 @@
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <h5 id="start_date_time">Start Date & Time: </h5>
+                                <h5 id="start_date_time"><i class="far fa-calendar-alt"></i>Start Date & Time: </h5>
                                 <h6 class="datetime">{{adventure.adventure_start}}</h6>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h5 class="descriptors">Region: </h5>
+                                    <h5 class="descriptors"><i class="bi bi-signpost-split"></i>Region: </h5>
                                     <h6 class="details">{{adventure.region}}</h6><br>
-                                    <h5 class="descriptors">Location: </h5>
+                                    <h5 class="descriptors"><i class="fas fa-map-marker-alt" id="location_market"></i>Location: </h5>
                                     <h6 class="details">{{adventure.location}}</h6><br>
-                                    <h5 class="descriptors">Distance: </h5>
+                                    <h5 class="descriptors"><i class="fas fa-road"></i>Distance: </h5>
                                     <h6 class="details">{{adventure.distance}}</h6><br>
-                                    <h5 class="descriptors">Skill Level: </h5>
+                                    <h5 class="descriptors"><i class="fas fa-map-marked-alt"></i>Meeting Spot: </h5>
+                                    <h6 class="details">{{adventure.meeting_location}}</h6><br>
+                                    <h5 class="descriptors"><i class="fas fa-signal"></i>Skill Level: </h5>
                                     <h6 class="details"> {{adventure.skill_level}}</h6><br>
                                 </div>
                                 <div class="col-md-6">
-                                    <h5>Suggested Equipment: </h5>
+                                    <h5><i class="fas fa-cogs"></i>Suggested Equipment: </h5>
                                     <ul>
                                         {% for equipment in adventure.suggested_equipment.all %}
                                         <li>{{equipment.name}}</li>
                                         {% endfor %}
                                     </ul>
+                                    <h5 id="description_details"><i class="fas fa-info-circle"></i>Description: </h5>
+                                    <h6 id="desc_verbage"> {{adventure.description}}</h6>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="button_wrapper">
                                     <div class="col-md-6">
                                         {% if adventure.organizer.id != request.session.user_id %}
                                         <form action="/leave_adventure/{{adventure.id}}" method="POST">
@@ -168,7 +172,6 @@
                                         {% endif %}
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,10 @@
 #new_adv_button{
     margin-left: 42%;
 }
+#button_wrapper{
 
+    margin-left: 50%;
+}
 .icon{
     margin: 5px 10px 10px 5px;
     display:  inline-block;

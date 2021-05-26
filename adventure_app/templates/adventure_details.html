@@ -67,7 +67,7 @@
                         <h3 id="activity_name">{{current_adventure.activity.name}}</h3>
                     </div>
                     <div class="col-md-6">
-                        <h5 class="descriptors">Date: </h5>
+                        <h5 class="descriptors"><i class="far fa-calendar-alt"></i>Date: </h5>
                         <p class="details">{{current_adventure.adventure_start}}</p><br>
                     </div>
                 </div>
@@ -84,9 +84,9 @@
                         <p class="details">{{current_adventure.skill_level}}</p>
                     </div>
                     <div class="col-md-6" id="host_email">
-                        <h5 class="descriptors">Host Email: </h5>
+                        <h5 class="descriptors"> <i class="far fa-paper-plane"></i>Host Email: </h5>
                         <p class="details">{{current_adventure.organizer.email}}</p>
-                        <h5>Description:</h5>
+                        <h5><i class="fas fa-info-circle"></i>Description:</h5>
                         <p class="desc_verbage">{{current_adventure.description}}</p>
                         <div class="col-md-6" id="button_forms">
                             {% if current_user == current_adventure.organizer %}
