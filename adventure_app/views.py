@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import JsonResponse
 import bcrypt
 from .models import *
 
@@ -100,9 +101,11 @@ def my_adventures(request):  # todo done
 
 def adventure_detail(request, adv_id):
     if 'user_id' in request.session:
+        adventure = Adventure.objects.get(id=adv_id)
         context = {
             'current_user': User.objects.get(id=request.session['user_id']),
-            'current_adventure': Adventure.objects.get(id=adv_id),
+            'current_adventure': adventure,
+            'discussion_posts': adventure.discussion_posts.order_by('-id'),
         }
         return render(request, "adventure_details.html", context)
     return redirect('/')
@@ -138,7 +141,6 @@ def create_adventure(request):  # todo add equipment
                 for key, value in errors.items():
                     messages.error(request, value)
                 return redirect('/new_adventure')
-
             else:
                 location = request.POST['location']
                 region = request.POST['region']
@@ -375,3 +377,73 @@ def filter_my_adventures(request):
             return render(request, 'my_adventures.html', context)
         return redirect('/')
     return redirect('/adventures')
+
+
+def post_discussion(request, adv_id):
+    if request.method == "POST":
+        if 'user_id' in request.session:
+            errors = DiscussionPost.objects.discussion_validation(request.POST)
+            if len(errors) > 0:
+                error_string = ''
+                for error in errors:
+                    error_string += f'<p>{errors[error]}</p>'
+                    print(errors, error_string)
+                    response = JsonResponse({'error': error_string})
+                    response.status_code = 411
+                return response
+            adv = Adventure.objects.get(id=adv_id)
+            new_post = DiscussionPost.objects.create(
+                post_text=request.POST['post_text'], adventure=adv,
+                posted_by=User.objects.get(id=request.session['user_id'])
+            )
+            context = {
+                'post': new_post,
+            }
+            return render(request, 'discussion_snippet.html', context)
+        return redirect('/')
+    return redirect('/logout')
+
+
+def post_reply_ajax(request):
+    if request.method == "POST":
+        if 'user_id' in request.session:
+            errors = DiscussionReply.objects.reply_validation(request.POST)
+            if len(errors) > 0:
+                error_string = ''
+                for error in errors:
+                    error_string += f'<p>{errors[error]}</p>'
+                    print(errors, error_string)
+                    response = JsonResponse({'error': error_string})
+                    response.status_code = 411
+                return response
+            discussion = DiscussionPost.objects.get(id=request.POST['post_id'])
+            adv_id = discussion.adventure.id
+            DiscussionReply.objects.create(
+                reply_text=request.POST['reply_text'], discussion_post=discussion,
+                posted_by=User.objects.get(id=request.session['user_id'])
+            )
+            adventure = Adventure.objects.get(id=adv_id)
+            context = {
+                'discussion_posts': adventure.discussion_posts.order_by('-id'),
+            }
+            return render(request, 'discussion_posts.html', context)
+        return redirect('/')
+    return redirect('/logout')
+
+
+# def post_reply(request, discussion_id):
+#     if request.method == "POST":
+#         if 'user_id' in request.session:
+#             discussion = DiscussionPost.objects.get(id=discussion_id)
+#             adv_id = discussion.adventure.id
+#             DiscussionReply.objects.create(
+#                 reply_text=request.POST['reply_text'], discussion_post=discussion,
+#                 posted_by=User.objects.get(id=request.session['user_id'])
+#             )
+#             adventure = Adventure.objects.get(id=adv_id)
+#             context = {
+#                 'discussion_posts': adventure.discussion_posts.all(),
+#             }
+#             return render(request, 'discussion_posts.html', context)
+#         return redirect('/')
+#     return redirect('/logout')

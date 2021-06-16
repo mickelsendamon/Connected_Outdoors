@@ -1,0 +1,13 @@
+<div class="container discussion">
+    <h5>{{post.post_text}}</h5>
+    <p class="author">Posted by: {{post.posted_by.first_name}} {{post.posted_by.last_name}}</p>
+    <div class="rep_form">
+        <div class="reply_errors" id=reply-{{post.id}}></div>
+        <form class="reply_form">
+            {% csrf_token %}
+            <input type="hidden" name="post_id" value="{{post.id}}">
+            <input class="post_reply" name="reply_text" type="text">
+            <input class="submit_reply" type="submit" value="Reply">
+        </form>
+    </div>
+</div>

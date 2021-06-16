@@ -85,3 +85,28 @@ i{
 #navbar_back{
     padding-right: 1.5%;
 }
+
+.discussion_posts, .discussion {
+    border: 2px solid #000000;
+    margin: 5px 0 5px 0;
+}
+
+.post_discussion, .post_reply {
+    width: 90%;
+    margin: 0 5px 5px 5px;
+}
+
+.reply_form, #post_form {
+    text-align: right;
+}
+
+.reply {
+    margin-left: 5%;
+    margin-bottom: 5px;
+    border: grey 1px solid;
+}
+
+.author {
+    font-size: small;
+    text-align: right;
+}

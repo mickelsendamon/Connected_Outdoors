@@ -1,0 +1,30 @@
+<h3>Discussion Topics</h3>
+<div id="post_errors"></div>
+<form id="post_form">
+    {% csrf_token %}
+    <input class="post_discussion" name="post_text" type="text">
+    <input id="submit_discussion" type="submit" value="Post">
+</form>
+<div id="all_discussions">
+    {% for post in discussion_posts %}
+        <div class="container discussion">
+            <h5>{{post.post_text}}</h5>
+            <p class="author">Posted by: {{post.posted_by.first_name}} {{post.posted_by.last_name}}</p>
+            {% for reply in post.replies.all %}
+                <div class="reply">
+                    <h5>{{reply.reply_text}}</h5>
+                    <p class="author">Reply by: {{reply.posted_by.first_name}} {{reply.posted_by.last_name}}</p>
+                </div>
+            {% endfor %}
+            <div class="rep_form">
+                <div class="reply_errors" id=reply-{{post.id}}></div>
+                <form class="reply_form">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{post.id}}">
+                    <input class="post_reply" name="reply_text" type="text">
+                    <input class="submit_reply" type="submit" value="Reply">
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+</div>
