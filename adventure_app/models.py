@@ -13,7 +13,6 @@ class UserManager(models.Manager):
             errors["last_name"] = "The last name field can't be empty!"
         if len(post_data['password']) < 8:
             errors["password_short"] = "The password should be at least 8 characters!"
-
         EMAIL_REGEX = re.compile(
             r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         if not EMAIL_REGEX.match(post_data['email']):
@@ -77,6 +76,22 @@ class AdventureManager(models.Manager):
         return errors
 
 
+class DiscussionPostManager(models.Manager):
+    def discussion_validation(self, post_data):
+        errors = {}
+        if len(post_data['post_text']) < 1:
+            errors['post_text_length'] = 'Post must be 1 character or more'
+        return errors
+
+
+class DiscussionReplyManager(models.Manager):
+    def reply_validation(self, post_data):
+        errors = {}
+        if len(post_data['reply_text']) < 1:
+            errors['reply_text_length'] = 'Post must be 1 character or more'
+        return errors
+
+
 class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -116,3 +131,25 @@ class Adventure(models.Model):
     suggested_equipment = models.ManyToManyField(
         SuggestedEquipment, related_name='suggested_for')
     objects = AdventureManager()
+
+
+class DiscussionPost(models.Model):
+    post_text = models.TextField()
+    adventure = models.ForeignKey(
+        Adventure, on_delete=models.CASCADE, related_name='discussion_posts'
+    )
+    posted_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='discussion_posts'
+    )
+    objects = DiscussionPostManager()
+
+
+class DiscussionReply(models.Model):
+    reply_text = models.TextField()
+    discussion_post = models.ForeignKey(
+        DiscussionPost, on_delete=models.CASCADE, related_name='replies'
+    )
+    posted_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='discussion_replies'
+    )
+    objects = DiscussionReplyManager()

@@ -22,4 +22,7 @@ urlpatterns = [
     path('add_sg_equpiment', views.add_sg_equipment),
     path('filter_adventures', views.filter_adventures),
     path('filter_my_adventure', views.filter_my_adventures),
+    path('post_discussion/<int:adv_id>', views.post_discussion),
+    # path('post_reply/<int:discussion_id>', views.post_reply),
+    path('post_reply_ajax', views.post_reply_ajax),
 ]
