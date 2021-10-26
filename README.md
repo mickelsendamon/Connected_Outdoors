@@ -37,12 +37,12 @@ Connected Outdoors is a user-friendly app that allows individuals and groups to 
   <li>Numerous opportunities for app build out</li>
 </ul>
     
-<h3>Languages, Framework, Libraries, Third Party APIs, Database, & Technologies Used</h3>
+<h3>Technologies Used to Build App</h3>
 <hr>
 <ul>
   <li>Python</li>
   <li>Django</li>
-  <li>HTML5</li>
+  <li>HTML</li>
   <li>CSS</li>
   <li>JavaScript</li>
   <li>jQuery</li>
