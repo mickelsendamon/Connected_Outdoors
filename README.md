@@ -1,7 +1,8 @@
-# Connected Outdoors
+<h1>Connected Outdoors</h1>
 Connected Outdoors is a user-friendly app that allows individuals and groups to connect with others to participate in outdoor adventures.  Whether you want to go mountain biking, rock climbing, hiking, or anything else, Connected Outdoors provides an easy-to-use platform for planning and coordinating these activities.  The concept was a no-brainer: enhance social connections, physical fitness, and love for the outdoors -- all at once!
 
 <h3>Functional Features</h3>
+<hr>
 <ul>
   <li>Customizable user profile</li>
   <li>Sticky navbar for easy site navigation</li>
@@ -17,7 +18,8 @@ Connected Outdoors is a user-friendly app that allows individuals and groups to 
     skill level, description, host email, suggested equipment</li>
 </ul>
 
-<h3>App Security & Technical Features</h3>
+<h3>Technical Features & App Security</h3>
+<hr>
 <ul>
   <li>Secure user registration and login via unique email</li>
   <li>Front and backend validations with specialized error messages</li>
@@ -36,6 +38,7 @@ Connected Outdoors is a user-friendly app that allows individuals and groups to 
 </ul>
     
 <h3>Languages, Framework, Libraries, Third Party APIs, Database, & Technologies Used</h3>
+<hr>
 <ul>
   <li>Python</li>
   <li>Django</li>
@@ -58,3 +61,15 @@ Connected Outdoors is a user-friendly app that allows individuals and groups to 
   <li>Zoom</li>
   <li>Discord</li>
 </ul>
+
+<!-- <h3>Demo</h3>
+<hr> -->
+
+<h3>Authors</h3>
+<hr>
+<p>Matyas Csiha: https://github.com/Matyas72</p>
+<p>Marlene Gallup: https://github.com/msgallup</p>
+<p>Damon Mickelson: https://github.com/mickelsendamon</p>
+<p>Jessica Stern: https://github.com/jlstern3</p>
+
+
