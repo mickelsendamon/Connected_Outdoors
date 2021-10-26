@@ -1,2 +1,60 @@
-# Connected_Outdoors
-Connected Outdoor Adventures is an application that helps individuals and groups connect with other local individuals and groups during a outdoor adventures that all parties share a passion for; whether it's mountain biking, rock climbing, hiking, kayaking and beyond, Connected Outdoor Adventures provides a platform for planning and coordinating adventures for people to share. The app allows users to create and join adventures with others. By creating a new adventure, the adventure will become available for others to join. The app groups adventures by region (North, South, etc) and by activity (mountain biking, hiking) and even provides suggested equipment.
+# Connected Outdoors
+Connected Outdoors is a user-friendly app that allows individuals and groups to connect with others to participate in outdoor adventures.  Whether you want to go mountain biking, rock climbing, hiking, or anything else, Connected Outdoors provides an easy-to-use platform for planning and coordinating these activities.  The concept was a no-brainer: enhance social connections, physical fitness, and love for the outdoors -- all at once!
+
+<h3>Functional Features</h3>
+<ul>
+  <li>Customizable user profile</li>
+  <li>Sticky navbar for easy site navigation</li>
+  <li>Chronological display of all posted adventures</li>
+  <li>Multi-filter search capabilities</li>
+  <li>Ability for user to create new adventures, which then become available for others to join</li>
+  <li>User can edit only their previously published adventures</li>
+  <li>Activities joined by user logged under "My Adventures" tab with ability to leave adventure</li>
+  <li>Specific adventure removal only allowed by admin and user that created adventure</li>
+  <li>Ability for user to join pre-created adventures</li>
+  <li>User (with email) auto-added to adventure list upon joining for easy participant communication</li>
+  <li>Individual adventure details pages stating: date, region, time, specific location, adventure distance, 
+    skill level, description, host email, suggested equipment</li>
+</ul>
+
+<h3>App Security & Technical Features</h3>
+<ul>
+  <li>Secure user registration and login via unique email</li>
+  <li>Front and backend validations with specialized error messages</li>
+  <li>Admin accessibility</li>
+  <li>User login check necessary for access to complete app</li>
+  <li>Built-out .gitignore for omitting private information from GitHub</li>
+  <li>Default path established for catch-all URLs</li>
+  <li>bCrypt and password hash for encoding</li>
+  <li>Secure user logout</li>
+  <li>Hard-coded dropdown menus and categories for cohesive backend organization</li>
+  <li>MVC architecture</li>
+  <li>Custom API built from scratch</li> 
+  <li>Robust backend for scalability options</li>
+  <li>Leveraged third party APIs to create cohesive frontend design with clean features and aesthetic likeness</li>
+  <li>Numerous opportunities for app build out</li>
+</ul>
+    
+<h3>Languages, Framework, Libraries, Third Party APIs, Database, & Technologies Used</h3>
+<ul>
+  <li>Python</li>
+  <li>Django</li>
+  <li>HTML5</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+  <li>jQuery</li>
+  <li>AJAX</li>
+  <li>Bootstrap</li>
+  <li>Pillow</li>
+  <li>FontAwesome</li>
+  <li>GoogleFonts</li>
+  <li>123rf.com</li>
+  <li>SQLite</li>
+  <li>Balsamiq</li>
+  <li>VSCode</li>
+  <li>Mattermost</li>
+  <li>Git</li>
+  <li>GitHub</li>
+  <li>Zoom</li>
+  <li>Discord</li>
+</ul>
