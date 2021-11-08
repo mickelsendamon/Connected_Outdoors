@@ -36,7 +36,8 @@ Connected Outdoors is a user-friendly app that allows individuals and groups to 
   <li>Leveraged third party APIs to create cohesive frontend design with clean features and aesthetic likeness</li>
   <li>Numerous opportunities for app build out</li>
 </ul>
-    
+   <h3>Video Demo</h3>
+   <hr>
 <h3>Technologies Used to Build App</h3>
 <hr>
 <ul>
